@@ -1,65 +1,263 @@
-import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+const profile = {
+  name: "Arjay",
+  title: "Software Developer",
+  subtitle: "& Product Builder.",
+  intro:
+    "I build design tools for developers. Mostly with React and Next.js.",
+  about: (
+    <>
+      I&apos;m a frontend engineer based in Philippines. I build design tools for
+      developers. I care a lot about how they look and
+      feel. These days, I’ve been exploring better agentic workflows and building <a href="https://agentkogei.vercel.app/" target="_blank">agentkogei</a>,
+      a free, open source design system collection for React and Next.js. Peaked Masters rank in both <a href="https://www.ea.com/games/apex-legends" target="_blank">Apex</a> and <a href="https://www.leagueoflegends.com/" target="_blank">League</a>.
+    </>
+  ),
+  links: {
+    resume: "#",
+    call: "https://cal.com/arjayby/30min",
+  },
+};
+
+const experience = [
+  {
+    company: "MySchool",
+    role: "Frontend Engineer",
+    period: "2026 – Present",
+    current: true,
+  },
+  {
+    company: "Bounty",
+    role: "Software Developer",
+    period: "2023 – 2024",
+    current: false,
+  },
+  {
+    company: "Advance Intelligence Group",
+    role: "Frontend Engineer",
+    period: "2021 – 2023",
+    current: false,
+  },
+  {
+    company: "StackTrek",
+    role: "Software Engineer",
+    period: "2018 – 2021",
+    current: false,
+  },
+];
+
+const projects = [
+  {
+    name: "agentkogei",
+    type: "Open source",
+    description: "Give AI coding agents durable, project-level design direction through safe, versioned Design Pack installation.",
+    href: "https://agentkogei.vercel.app/",
+  },
+  {
+    name: "aeri-ui",
+    type: "Open source",
+    description:
+      "An open-source collection of fast, accessible React components and blocks with thoughtfully restrained motion. Built for Next.js, Tailwind CSS, and shadcn/ui.",
+    href: "https://aeri-ui.vercel.app/",
+  },
+];
+
+const stack = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Tailwind CSS",
+  "Base UI",
+  "shadcn/ui",
+  "Drizzle",
+  "Neon",
+  "Better Auth",
+  "Polar",
+  "Convex"
+];
+
+const tools = ["Codex", "Claude Code", "Cursor", "Mobbin", "GitHub", "Vercel", "Linear"];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <main className="min-h-screen px-6 pb-20 pt-16 sm:px-10 sm:pb-24 sm:pt-24 lg:pt-32">
+      <div className="mx-auto w-full max-w-170 px-6">
+        <section aria-labelledby="portfolio-heading">
+          <Avatar className="size-10 rounded-lg after:rounded-lg">
+            <AvatarImage
+              src="/me.jpg"
+              alt={`Portrait of ${profile.name}`}
+              className="rounded-lg"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <AvatarFallback className="rounded-lg">
+              {profile.name.slice(0, 2)}
+            </AvatarFallback>
+          </Avatar>
+
+          <h1
+            id="portfolio-heading"
+            className="mt-7 font-pixel text-[2.2rem] font-black leading-[0.98] tracking-tight text-foreground sm:mt-8 sm:text-[2.9rem]"
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <span className="block">{profile.title}</span>
+            <span className="block text-muted-foreground">
+              {profile.subtitle}
+            </span>
+          </h1>
+
+          <p className="mt-9 max-w-155 text-sm leading-6 text-muted-foreground">
+            {profile.intro}
+          </p>
+
+          <nav
+            aria-label="Portfolio links"
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
+            <Button
+              render={
+                <a href="https://www.linkedin.com/in/arjay-by-3a1b3a1b3a1b/" />
+              }
+              nativeButton={false}
+              size="lg"
+              className="rounded-full px-5"
+            >
+              Resume
+              <ArrowUpRight aria-hidden="true" />
+            </Button>
+            <a
+              href={profile.links.call}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "rounded-full px-5",
+              )}
+            >
+              Book a call
+            </a>
+          </nav>
+        </section>
+
+        <section aria-labelledby="about-heading" className="mt-24">
+          <h2
+            id="about-heading"
+            className="text-sm font-medium tracking-wider text-muted-foreground"
+          >
+            About
+          </h2>
+
+          <p className="mt-9 max-w-170 text-sm leading-6 text-muted-foreground [&_a]:font-medium [&_a]:text-foreground [&_a]:underline [&_a]:decoration-border [&_a]:underline-offset-4">
+            {profile.about}
+          </p>
+
+          <div className="mt-10 flex flex-col gap-6">
+            {experience.map((item) => (
+              <div
+                key={item.company}
+                className="grid grid-cols-[1fr_auto] items-baseline gap-5 text-sm"
+              >
+                <p className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1">
+                  <span className="font-semibold text-foreground">
+                    {item.company}
+                  </span>
+                  {item.current ? (
+                    <span
+                      className="size-1.5 rounded-full bg-amber-400"
+                      aria-label="Current role"
+                    />
+                  ) : null}
+                  <span className="text-muted-foreground">{item.role}</span>
+                </p>
+                <time className="text-xs text-muted-foreground/60">
+                  {item.period}
+                </time>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="projects-heading" className="mt-24">
+          <h2
+            id="projects-heading"
+            className="text-sm font-medium tracking-wider text-muted-foreground"
+          >
+            Projects
+          </h2>
+
+          <Accordion className="mt-6">
+            {projects.map((project) => (
+              <AccordionItem key={project.name} value={project.name}>
+                <AccordionTrigger className="py-5 hover:no-underline">
+                  <span className="flex min-w-0 flex-1 items-baseline justify-between gap-4 pr-3">
+                    <span className="text-sm font-semibold text-foreground">
+                      {project.name}
+                    </span>
+                    <span className="text-xs font-normal text-muted-foreground/60">
+                      {project.type}
+                    </span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col items-start gap-4 pb-6 pr-8 text-muted-foreground">
+                  <p className="max-w-[600px] leading-6">
+                    {project.description}
+                  </p>
+                  <a
+                    href={project.href}
+                    className="inline-flex items-center gap-1.5 font-medium text-foreground"
+                  >
+                    View project
+                    <ArrowUpRight aria-hidden="true" className="size-3.5" />
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+
+        <section
+          aria-label="Stack and tools"
+          className="mt-24 grid gap-12 sm:grid-cols-2 sm:gap-10"
+        >
+          <div>
+            <h2 className="text-sm font-medium tracking-wider text-muted-foreground">
+              Stack
+            </h2>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {stack.map((item) => (
+                <Badge key={item} variant="secondary">
+                  {item}
+                </Badge>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-sm font-medium tracking-wider text-muted-foreground">
+              Tools
+            </h2>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {tools.map((item) => (
+                <Badge key={item} variant="outline">
+                  {item}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
