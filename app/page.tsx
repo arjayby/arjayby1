@@ -25,7 +25,22 @@ const profile = {
     <>
       I&apos;m a frontend engineer based in Philippines. I build design tools for
       developers. I care a lot about how they look and
-      feel. These days, I’ve been exploring better agentic workflows and building <a href="https://agentkogei.vercel.app/" target="_blank">agentkogei</a>,
+      feel. These days, I've been exploring better agentic workflows and building{" "}
+      <a
+        href="https://agentkogei.vercel.app/"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-1"
+      >
+        <img
+          src="/agentkogei.svg"
+          alt=""
+          aria-hidden="true"
+          className="size-3.5 rounded-sm"
+        />
+        AgentKogei
+      </a>
+      ,
       a free, open source design system collection for React and Next.js. Peaked Masters rank in both <a href="https://www.ea.com/games/apex-legends" target="_blank">Apex</a> and <a href="https://www.leagueoflegends.com/" target="_blank">League</a>.
     </>
   ),
@@ -64,13 +79,15 @@ const experience = [
 
 const projects = [
   {
-    name: "agentkogei",
+    name: "AgentKogei",
+    icon: "/agentkogei.svg",
     type: "Open source",
     description: "Give AI coding agents durable, project-level design direction through safe, versioned Design Pack installation.",
     href: "https://agentkogei.vercel.app/",
   },
   {
-    name: "aeri-ui",
+    name: "Aeri UI",
+    icon: "/aeriui.svg",
     type: "Open source",
     description:
       "An open-source collection of fast, accessible React components and blocks with thoughtfully restrained motion. Built for Next.js, Tailwind CSS, and shadcn/ui.",
@@ -202,7 +219,15 @@ export default function Home() {
               <AccordionItem key={project.name} value={project.name}>
                 <AccordionTrigger className="py-5 hover:no-underline">
                   <span className="flex min-w-0 flex-1 items-baseline justify-between gap-4 pr-3">
-                    <span className="text-sm font-semibold text-foreground">
+                    <span className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                      {"icon" in project && project.icon ? (
+                        <img
+                          src={project.icon}
+                          alt=""
+                          aria-hidden="true"
+                          className="size-4 rounded-sm"
+                        />
+                      ) : null}
                       {project.name}
                     </span>
                     <span className="text-xs font-normal text-muted-foreground/60">
@@ -211,7 +236,7 @@ export default function Home() {
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col items-start gap-4 pb-6 pr-8 text-muted-foreground">
-                  <p className="max-w-[600px] leading-6">
+                  <p className="max-w-150 leading-6">
                     {project.description}
                   </p>
                   <a
