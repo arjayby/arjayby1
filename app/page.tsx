@@ -82,7 +82,7 @@ const projects = [
     name: "AgentKogei",
     icon: "/agentkogei.svg",
     type: "Open source",
-    description: "Give AI coding agents durable, project-level design direction through safe, versioned Design Pack installation.",
+    description: "Complete design systems for coding agents. One visual direction across every screen.",
     href: "https://agentkogei.vercel.app/",
   },
   {
@@ -90,7 +90,7 @@ const projects = [
     icon: "/aeriui.svg",
     type: "Open source",
     description:
-      "An open-source collection of fast, accessible React components and blocks with thoughtfully restrained motion. Built for Next.js, Tailwind CSS, and shadcn/ui.",
+      "An open-source collection of React components and UI blocks with playful animations, polished interactions, and fluid motion.",
     href: "https://aeri-ui.vercel.app/",
   },
 ];
