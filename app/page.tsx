@@ -52,12 +52,6 @@ const profile = {
 
 const experience = [
   {
-    company: "MySchool",
-    role: "Frontend Engineer",
-    period: "2026 – Present",
-    current: true,
-  },
-  {
     company: "Bounty",
     role: "Software Developer",
     period: "2023 – 2024",
