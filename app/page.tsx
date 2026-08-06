@@ -25,7 +25,7 @@ const profile = {
     <>
       I&apos;m a frontend engineer based in Philippines. I build design tools for
       developers. I care a lot about how they look and
-      feel. These days, I've been exploring better agentic workflows and building{" "}
+      feel. These days, I've been exploring better agentic workflows for my daily development, agentic payments with x402, and building{" "}
       <a
         href="https://agentkogei.vercel.app/"
         target="_blank"
