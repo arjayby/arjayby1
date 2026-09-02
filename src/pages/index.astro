@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import TooltipLink from "@/components/TooltipLink";
 ---
 
 <BaseLayout
@@ -17,23 +18,19 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
           and feel.
 
           <p>
-            Right now, I'm building <a
-              href="https://kousa.app"
-              target="_blank"
-              rel="noopener noreferrer">Kousa</a
-            >, a node-based studio for generating and connecting AI media, while
-            exploring better agentic development workflows and agentic payments
-            with x402.
+            These days, I'm exploring better agentic development workflows and
+            agentic payments with x402 while building <TooltipLink
+              href="https://www.kousa.app"
+              client:load>Kousa</TooltipLink
+            >, a node-based studio for generating and connecting AI media
           </p>
           <p>
-            Peaked Masters rank in both <a
+            Peaked Masters rank in both <TooltipLink
               href="https://www.ea.com/games/apex-legends"
-              target="_blank"
-              rel="noopener noreferrer">Apex</a
-            > and <a
+              client:load>Apex</TooltipLink
+            > and <TooltipLink
               href="https://www.leagueoflegends.com/"
-              target="_blank"
-              rel="noopener noreferrer">League</a
+              client:load>League</TooltipLink
             >.
           </p>
         </p>
