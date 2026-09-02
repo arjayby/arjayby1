@@ -231,8 +231,8 @@
   .writing-article {
     display: grid;
     gap: 2.5rem;
-    font-size: 0.8125rem;
-    line-height: 1.65;
+    font-size: inherit;
+    line-height: inherit;
   }
 
   .article-header {
@@ -273,15 +273,17 @@
   }
 
   .article-heading h1 {
-    font-size: clamp(1.65rem, 7vw, 2.5rem);
-    line-height: 1;
-    letter-spacing: -0.08em;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: inherit;
+    letter-spacing: inherit;
+    text-transform: uppercase;
   }
 
   .article-deck {
     max-width: 28rem;
     color: var(--muted-foreground);
-    font-size: 0.875rem;
+    font-size: inherit;
   }
 
   .article-body,
@@ -309,8 +311,8 @@
 
   .article-body h2 {
     margin-bottom: 0.25rem;
-    font-size: 0.875rem;
-    line-height: 1.25;
+    font-size: inherit;
+    line-height: inherit;
     text-transform: uppercase;
   }
 
