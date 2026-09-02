@@ -180,6 +180,14 @@
     gap: 2rem;
   }
 
+  .home-heading {
+    margin: 0;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
   .copy-stack {
     display: flex;
     flex-direction: column;
