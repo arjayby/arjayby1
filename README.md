@@ -21,17 +21,17 @@ Commit Mono is loaded from an Adobe Fonts web project when
 PUBLIC_ADOBE_FONTS_KIT_ID=your-kit-id
 ```
 
-For offline local development, the project falls back to these private font
-files:
+The project also includes local font files as a fallback:
 
 ```text
-public/fonts/private/CommitMono-Regular.ttf
-public/fonts/private/CommitMono-Bold.ttf
+public/fonts/CommitMono-Regular.ttf
+public/fonts/CommitMono-Bold.ttf
+public/fonts/LICENSE.txt
 ```
 
-The files in that directory are ignored by Git and are licensed only for private
-and unpublished use. Production deployments should use the Adobe Fonts web
-project.
+Review `public/fonts/LICENSE.txt` before publishing or distributing the site.
+Production deployments should use the Adobe Fonts web project unless the
+required self hosting license has been obtained.
 
 ## Commands
 

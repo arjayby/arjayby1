@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Commit Mono";
-  src: url("/fonts/private/CommitMono-Regular.ttf") format("truetype");
+  src: url("/fonts/CommitMono-Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: "Commit Mono";
-  src: url("/fonts/private/CommitMono-Bold.ttf") format("truetype");
+  src: url("/fonts/CommitMono-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
