@@ -13,14 +13,25 @@ The site includes Home, Writing, and Finance pages. Content is placeholder copy 
 
 ## Commit Mono
 
-The project expects these local font files:
+Commit Mono is loaded from an Adobe Fonts web project when
+`PUBLIC_ADOBE_FONTS_KIT_ID` is set. Copy your web project ID into a local
+`.env` file:
+
+```sh
+PUBLIC_ADOBE_FONTS_KIT_ID=your-kit-id
+```
+
+For offline local development, the project falls back to these private font
+files:
 
 ```text
 public/fonts/private/CommitMono-Regular.ttf
 public/fonts/private/CommitMono-Bold.ttf
 ```
 
-The files in that directory are ignored by Git. The current copies are licensed only for private and unpublished use. Replace them with appropriately licensed webfont files and update the `@font-face` sources in `src/styles/global.css` before public deployment.
+The files in that directory are ignored by Git and are licensed only for private
+and unpublished use. Production deployments should use the Adobe Fonts web
+project.
 
 ## Commands
 
