@@ -129,7 +129,10 @@
 
 @layer components {
   .site-shell {
+    position: relative;
+    width: min(100%, 34rem);
     min-height: 100vh;
+    margin-inline: auto;
   }
 
   .site-nav {
@@ -167,19 +170,8 @@
   }
 
   .page-stack {
-    display: grid;
-    grid-template-columns: minmax(10rem, 24vw) minmax(0, 32rem) minmax(0, 1fr);
-    gap: 1rem;
     min-height: 100vh;
     padding: 7.5rem 1rem;
-  }
-
-  .page-heading {
-    margin: 0;
-    font-size: clamp(2rem, 3vw, 2.75rem);
-    font-weight: 700;
-    letter-spacing: -0.08em;
-    line-height: 0.95;
   }
 
   .page-content {
@@ -242,8 +234,6 @@
 
 @media (max-width: 42rem) {
   .page-stack {
-    grid-template-columns: 1fr;
-    gap: 3rem;
     padding-top: 7.5rem;
   }
 
