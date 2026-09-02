@@ -358,6 +358,15 @@
     font-weight: 700;
   }
 
+  .example-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-block: 0.1rem 0.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
   .copy-example .example-label:not(:first-child) {
     margin-top: 0.35rem;
   }

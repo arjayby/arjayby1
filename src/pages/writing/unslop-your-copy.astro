@@ -1,4 +1,7 @@
 ---
+import aiChatImage from "@/assets/unslop-your-copy/ai-chat.png";
+import projectManagementImage from "@/assets/unslop-your-copy/project-management.png";
+import salesDataImage from "@/assets/unslop-your-copy/sales-data.png";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
@@ -125,7 +128,16 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         </p>
 
         <div class="copy-example">
-          <p class="example-label">Original, project management app</p>
+          <p class="example-label">Project management app</p>
+          <img
+            class="example-image"
+            src={projectManagementImage.src}
+            alt="Project management landing page showing Project Management at the Speed of Thought."
+            width={projectManagementImage.width}
+            height={projectManagementImage.height}
+            loading="lazy"
+            decoding="async"
+          />
           <blockquote>
             <p>"Project management at the speed of thought."</p>
           </blockquote>
@@ -139,7 +151,16 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         </div>
 
         <div class="copy-example">
-          <p class="example-label">Original, sales data platform</p>
+          <p class="example-label">Sales data platform</p>
+          <img
+            class="example-image"
+            src={salesDataImage.src}
+            alt="Sales operations landing page showing Revolutionize your sales ops with accurate data."
+            width={salesDataImage.width}
+            height={salesDataImage.height}
+            loading="lazy"
+            decoding="async"
+          />
           <blockquote>
             <p>"Revolutionize your sales ops with accurate data."</p>
           </blockquote>
@@ -154,7 +175,16 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         </div>
 
         <div class="copy-example">
-          <p class="example-label">Original, AI chat app</p>
+          <p class="example-label">AI chat app</p>
+          <img
+            class="example-image"
+            src={aiChatImage.src}
+            alt="AI chat app landing page showing One App. All AI Models."
+            width={aiChatImage.width}
+            height={aiChatImage.height}
+            loading="lazy"
+            decoding="async"
+          />
           <blockquote>
             <p>"Unlock the power of multiple AI models in one sleek app."</p>
           </blockquote>
