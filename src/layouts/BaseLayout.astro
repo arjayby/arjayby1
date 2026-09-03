@@ -5,9 +5,10 @@ import "@/styles/global.css";
 interface Props {
   title: string;
   description: string;
+  wide?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, wide = false } = Astro.props;
 const pageTitle = title === "Home" ? "arjayby1" : `${title} | arjayby1`;
 const adobeFontsKitId = import.meta.env.PUBLIC_ADOBE_FONTS_KIT_ID;
 ---
@@ -37,7 +38,7 @@ const adobeFontsKitId = import.meta.env.PUBLIC_ADOBE_FONTS_KIT_ID;
     <title>{pageTitle}</title>
   </head>
   <body>
-    <div class="site-shell">
+    <div class:list={["site-shell", { "site-shell-wide": wide }]}>
       <SiteNavigation />
       <main>
         <slot />
