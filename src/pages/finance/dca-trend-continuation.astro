@@ -1,0 +1,626 @@
+---
+import { Image } from "astro:assets";
+import fibonacciSettings from "@/assets/finance/fibonacci-settings.png";
+import limitOrderOneDiagram from "@/assets/finance/limit-order-one-diagram.png";
+import limitOrderThreeDiagram from "@/assets/finance/limit-order-three-diagram.png";
+import limitOrderTwoDiagram from "@/assets/finance/limit-order-two-diagram.png";
+import longLimitOne from "@/assets/finance/long-limit-one.png";
+import longLimitThree from "@/assets/finance/long-limit-three.png";
+import longLimitTwo from "@/assets/finance/long-limit-two.png";
+import monthlyPnl from "@/assets/finance/monthly-pnl.jpg";
+import shortLimitOne from "@/assets/finance/short-limit-one.png";
+import shortLimitThree from "@/assets/finance/short-limit-three.png";
+import shortLimitTwo from "@/assets/finance/short-limit-two.png";
+import tradingPerformance from "@/assets/finance/trading-performance.jpg";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const sections = [
+  { id: "strategy-overview", label: "Strategy overview" },
+  { id: "dca-method", label: "Three-limit-order method" },
+  { id: "fibonacci-levels", label: "Fibonacci levels" },
+  { id: "entry-confirmations", label: "Entry confirmations" },
+  { id: "position-sizing", label: "Position sizing" },
+  { id: "risking-five", label: "Risking five to make one" },
+  { id: "win-rate-checklist", label: "Win-rate checklist" },
+  { id: "disclaimer-resources", label: "Disclaimer and learning resources" },
+  { id: "trading-tools", label: "Trading tools" },
+];
+
+const limitOrderDiagrams = [
+  {
+    image: limitOrderOneDiagram,
+    title: "First limit order",
+    alt: "TradingView diagram showing the first limit order at the 0.618 Fibonacci level, take profit at 1.272, and stop loss at negative 0.05.",
+  },
+  {
+    image: limitOrderTwoDiagram,
+    title: "Second limit order",
+    alt: "TradingView diagram showing a second limit order at the 0.382 Fibonacci level and its adjusted take-profit area.",
+  },
+  {
+    image: limitOrderThreeDiagram,
+    title: "Third limit order",
+    alt: "TradingView diagram showing a third limit order at the 0.17 Fibonacci level with the same stop loss and a lower take-profit area.",
+  },
+];
+
+const tradeExamples = [
+  {
+    image: longLimitOne,
+    title: "Long position, limit 1 win",
+    url: "https://www.tradingview.com/x/oR8WEyXx/",
+    alt: "Annotated SOL perpetual chart showing a long trend-continuation trade that won after the first limit order filled.",
+  },
+  {
+    image: longLimitTwo,
+    title: "Long position, limit 2 win",
+    url: "https://www.tradingview.com/x/qQm4Lo7x/",
+    alt: "Annotated SOL perpetual chart showing a long trend-continuation trade that won after the second limit order filled.",
+  },
+  {
+    image: longLimitThree,
+    title: "Long position, limit 3 win",
+    url: "https://www.tradingview.com/x/5s5Y8f5m/",
+    alt: "Annotated SOL perpetual chart showing a long trend-continuation trade that won after the third limit order filled.",
+  },
+  {
+    image: shortLimitOne,
+    title: "Short position, limit 1 win",
+    url: "https://www.tradingview.com/x/yWW099BI/",
+    alt: "Annotated SOL perpetual chart showing a short trend-continuation trade that won after the first limit order filled.",
+  },
+  {
+    image: shortLimitTwo,
+    title: "Short position, limit 2 win",
+    url: "https://www.tradingview.com/x/xx8TrmUW/",
+    alt: "Annotated SOL perpetual chart showing a short trend-continuation trade that won after the second limit order filled.",
+  },
+  {
+    image: shortLimitThree,
+    title: "Short position, limit 3 win",
+    url: "https://www.tradingview.com/x/mLLShTz5/",
+    alt: "Annotated SOL perpetual chart showing a short trend-continuation trade that won after the third limit order filled.",
+  },
+];
+---
+
+<BaseLayout
+  title="How I made $4,700 in one month trading crypto"
+  description="A September 2024 case study of the high-risk DCA trend continuation strategy I used to 2x my crypto trading account."
+  wide
+>
+  <article class="page-stack writing-article finance-article">
+    <nav class="finance-rail" aria-label="Article sections" data-finance-rail>
+      <ol>
+        {
+          sections.map(({ id, label }, index) => (
+            <li>
+              <a
+                href={`#${id}`}
+                aria-label={label}
+                data-section-link={id}
+                data-state={index === 0 ? "active" : "pending"}
+              >
+                <span class="finance-rail-mark" aria-hidden="true" />
+                <span class="finance-rail-label">{label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    <header class="article-header">
+      <a class="back-link" href="/finance">Finance</a>
+      <div class="article-heading">
+        <p class="article-kicker">Case study · September 2024</p>
+        <h1>How I made $4,700 in one month trading crypto</h1>
+        <p class="article-deck">
+          The high-risk DCA trend continuation strategy I used to 2× my account
+        </p>
+      </div>
+
+      <dl class="finance-results" aria-label="Results shown in the supplied trading screenshots">
+        <div>
+          <dt>Cumulative P&amp;L</dt>
+          <dd>+$4,712.60</dd>
+        </div>
+        <div>
+          <dt>Account return</dt>
+          <dd>+114.45%</dd>
+        </div>
+        <div>
+          <dt>Closed positions</dt>
+          <dd>20</dd>
+        </div>
+        <div>
+          <dt>Recorded win rate</dt>
+          <dd>100%</dd>
+        </div>
+      </dl>
+
+      <div class="result-grid wide-block">
+        <figure class="finance-figure finance-figure-phone">
+          <button
+            class="image-viewer-trigger"
+            type="button"
+            data-viewer-trigger
+            data-full-src={monthlyPnl.src}
+            data-full-alt="Mobile trading dashboard showing cumulative profit and loss of 4,712.60 US dollars and cumulative return of 114.45 percent through September 30, 2024."
+            data-full-caption="Cumulative P&amp;L through Sep 30, 2024"
+            aria-label="Open the cumulative profit screenshot at full size"
+          >
+            <Image
+              src={monthlyPnl}
+              alt="Mobile trading dashboard showing cumulative profit and loss of 4,712.60 US dollars and cumulative return of 114.45 percent through September 30, 2024."
+              widths={[360, 540, 720]}
+              sizes="(max-width: 42rem) 78vw, 26rem"
+              format="webp"
+              loading="eager"
+            />
+          </button>
+          <figcaption>$4,712.60 cumulative P&amp;L and +114.45% on Sep 30, 2024.</figcaption>
+        </figure>
+
+        <figure class="finance-figure finance-figure-phone">
+          <button
+            class="image-viewer-trigger"
+            type="button"
+            data-viewer-trigger
+            data-full-src={tradingPerformance.src}
+            data-full-alt="Mobile trading dashboard showing 4,700.85 US dollars profit on SOLUSDT, 20 closed positions, and a 100 percent win rate for the selected period."
+            data-full-caption="Closed-position performance for the selected 30-day view"
+            aria-label="Open the trading-performance screenshot at full size"
+          >
+            <Image
+              src={tradingPerformance}
+              alt="Mobile trading dashboard showing 4,700.85 US dollars profit on SOLUSDT, 20 closed positions, and a 100 percent win rate for the selected period."
+              widths={[360, 540, 720]}
+              sizes="(max-width: 42rem) 78vw, 26rem"
+              format="webp"
+              loading="eager"
+            />
+          </button>
+          <figcaption>$4,700.85 across 20 closed positions in the selected 30-day view.</figcaption>
+        </figure>
+      </div>
+
+      <aside class="article-note finance-risk-note">
+        <p>
+          This is one month of personal results, not an expected return. I traded leveraged crypto
+          derivatives and risked roughly 20% to 30% of my account when margin allowed. A short
+          losing streak at that size can destroy an account. This article is educational, not
+          financial advice.
+        </p>
+      </aside>
+    </header>
+
+    <div class="article-body">
+      <section id="strategy-overview" aria-labelledby="strategy-overview-heading">
+        <p class="article-kicker">01</p>
+        <h2 id="strategy-overview-heading">Strategy overview</h2>
+        <p>
+          The setup trades a pullback in an established trend. In an uptrend, price forms higher
+          highs and higher lows, then pulls back before continuing. A downtrend flips that pattern.
+          I wait for the market to show direction, then try to join that direction during the
+          pullback.
+        </p>
+        <p>
+          "DCA" here means scaling into one leveraged position with three planned limit orders. It
+          is not the usual long-term practice of buying a fixed dollar amount on a schedule.
+        </p>
+        <ul class="article-list">
+          <li>Uptrend: buy a pullback after a significant previous high breaks.</li>
+          <li>Downtrend: sell a bounce after a significant previous low breaks.</li>
+          <li>Do not enter until trend, wave position, and EMA alignment agree.</li>
+        </ul>
+        <p>
+          Orientation examples:
+          <a href="https://www.tradingview.com/x/7GjQCPLz/" target="_blank" rel="noreferrer"
+            >long continuation ↗</a
+          > and
+          <a href="https://www.tradingview.com/x/p5yMICJu/" target="_blank" rel="noreferrer"
+            >short continuation ↗</a
+          >.
+        </p>
+      </section>
+
+      <section id="dca-method" aria-labelledby="dca-method-heading">
+        <p class="article-kicker">02</p>
+        <h2 id="dca-method-heading">The three-limit-order method</h2>
+        <p>
+          I plot a Fibonacci template across the impulse and stage entries at 0.618, 0.382, and
+          0.17. Each deeper order is larger. The stop stays at -0.05 while the profit target moves
+          closer as more orders fill.
+        </p>
+
+        <div class="strategy-table-wrap wide-block">
+          <table class="strategy-table">
+            <thead>
+              <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Entry</th>
+                <th scope="col">Size</th>
+                <th scope="col">Take profit</th>
+                <th scope="col">Stop</th>
+                <th scope="col">Risk ratio used</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Limit 1</th>
+                <td>0.618</td>
+                <td>1×</td>
+                <td>1.272</td>
+                <td>-0.05</td>
+                <td>1:1</td>
+              </tr>
+              <tr>
+                <th scope="row">Limit 2</th>
+                <td>0.382</td>
+                <td>3×</td>
+                <td>Just below 0.618</td>
+                <td>-0.05</td>
+                <td>3:1</td>
+              </tr>
+              <tr>
+                <th scope="row">Limit 3</th>
+                <td>0.17</td>
+                <td>5×</td>
+                <td>Just below 0.382</td>
+                <td>-0.05</td>
+                <td>5:1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          The 3× and 5× orders pull the average entry toward the deeper retracement. They also make
+          the position much larger exactly when price has moved farther against the initial entry.
+          All three orders, targets, and the final stop must be calculated before the first fill.
+        </p>
+
+        <div class="diagram-grid wide-block">
+          {
+            limitOrderDiagrams.map(({ image, title, alt }) => (
+              <figure class="finance-figure">
+                <button
+                  class="image-viewer-trigger"
+                  type="button"
+                  data-viewer-trigger
+                  data-full-src={image.src}
+                  data-full-alt={alt}
+                  data-full-caption={title}
+                  aria-label={`Open ${title.toLowerCase()} diagram at full size`}
+                >
+                  <Image
+                    src={image}
+                    alt={alt}
+                    widths={[480, 720, 1024, 1600]}
+                    sizes="(max-width: 42rem) calc(100vw - 2rem), 21rem"
+                    format="webp"
+                    loading="lazy"
+                  />
+                </button>
+                <figcaption>{title}</figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="fibonacci-levels" aria-labelledby="fibonacci-levels-heading">
+        <p class="article-kicker">03</p>
+        <h2 id="fibonacci-levels-heading">The Fibonacci template</h2>
+        <p>
+          These levels are fixed decision points, not guaranteed reversal zones. Their value in
+          this method is consistency. They define where each order, target, and stop belongs before
+          the trade becomes emotional.
+        </p>
+        <ul class="article-list">
+          <li><strong>0.618:</strong> the first pullback entry.</li>
+          <li><strong>0.382:</strong> the second entry and first average-down step.</li>
+          <li><strong>0.17:</strong> the deepest entry and final average-down step.</li>
+          <li><strong>1.272:</strong> the first order's take-profit level.</li>
+          <li><strong>-0.05:</strong> the shared invalidation level.</li>
+        </ul>
+        <figure class="finance-figure settings-figure">
+          <button
+            class="image-viewer-trigger"
+            type="button"
+            data-viewer-trigger
+            data-full-src={fibonacciSettings.src}
+            data-full-alt="TradingView Fibonacci retracement settings with 0.05, 0.17, 0.382, 0.5, 0.618, 1, and 1.272 enabled."
+            data-full-caption="TradingView Fibonacci retracement settings"
+            aria-label="Open the Fibonacci settings screenshot at full size"
+          >
+            <Image
+              src={fibonacciSettings}
+              alt="TradingView Fibonacci retracement settings with 0.05, 0.17, 0.382, 0.5, 0.618, 1, and 1.272 enabled."
+              widths={[360, 540, 720]}
+              sizes="(max-width: 42rem) calc(100vw - 2rem), 24rem"
+              format="webp"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Copy these levels into a dedicated TradingView template.</figcaption>
+        </figure>
+      </section>
+
+      <section id="entry-confirmations" aria-labelledby="entry-confirmations-heading">
+        <p class="article-kicker">04</p>
+        <h2 id="entry-confirmations-heading">The triple-check entry</h2>
+        <p>I take a setup only when all three confirmations align.</p>
+
+        <h3>Long setup</h3>
+        <ol class="article-list">
+          <li>Price breaks the previous significant high.</li>
+          <li>The pullback appears inside the third Elliott wave.</li>
+          <li>EMA 20 is above EMA 50, and EMA 50 is above EMA 200.</li>
+        </ol>
+
+        <h3>Short setup</h3>
+        <ol class="article-list">
+          <li>Price breaks the previous significant low.</li>
+          <li>The bounce appears inside the third Elliott wave.</li>
+          <li>EMA 20 is below EMA 50, and EMA 50 is below EMA 200.</li>
+        </ol>
+
+        <p>
+          Elliott-wave counts are subjective. Mark the wave, prior break, and EMA stack before
+          placing an order so the explanation cannot change after the trade.
+        </p>
+
+        <h3>Six completed examples</h3>
+        <p>
+          These are the long and short examples from the original strategy document. Select any
+          chart to inspect its annotations.
+        </p>
+
+        <div class="trade-grid wide-block">
+          {
+            tradeExamples.map(({ image, title, url, alt }) => (
+              <figure class="finance-figure trade-figure">
+                <button
+                  class="image-viewer-trigger"
+                  type="button"
+                  data-viewer-trigger
+                  data-full-src={image.src}
+                  data-full-alt={alt}
+                  data-full-caption={title}
+                  aria-label={`Open ${title.toLowerCase()} chart at full size`}
+                >
+                  <Image
+                    src={image}
+                    alt={alt}
+                    widths={[640, 960, 1280, 1920]}
+                    sizes="(max-width: 42rem) calc(100vw - 2rem), 31rem"
+                    format="webp"
+                    loading="lazy"
+                  />
+                </button>
+                <figcaption>
+                  <span>{title}</span>
+                  <a href={url} target="_blank" rel="noreferrer">Open full chart ↗</a>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="position-sizing" aria-labelledby="position-sizing-heading">
+        <p class="article-kicker">05</p>
+        <h2 id="position-sizing-heading">Position sizing</h2>
+        <p>
+          During this period, I risked roughly 20% to 30% of my account when margin allowed. On a
+          $10,000 account, that means accepting a possible $2,000 to $3,000 loss on one trade. At
+          the document's 5:1 risk ratio, the target profit would be $400 to $600.
+        </p>
+        <aside class="article-note">
+          <p>
+            This is a disclosure, not a sizing recommendation. Decide the maximum account loss you
+            can accept before entering any values in the calculator.
+          </p>
+        </aside>
+        <p>
+          The calculator takes account size, all three limit prices, the first take-profit level,
+          and the stop. It returns the three quantities, adjusted take-profit levels, and potential
+          profit for each fill scenario.
+        </p>
+        <p>
+          Its default calculation uses 10% account risk. The original method changes that input by
+          entering twice the account size for 20% risk, half the account size for 5% risk, and so
+          on. Verify every output against your exchange's contract size and margin rules before
+          placing an order.
+        </p>
+        <p>
+          <a
+            href="https://docs.google.com/spreadsheets/d/16-xoM2-JJkOANUb67w9ADrl8J-ZGC7qt7pl5h1fg93I/edit?gid=0#gid=0"
+            target="_blank"
+            rel="noreferrer"
+          >Crypto DCA trend continuation strategy calculator ↗</a>
+        </p>
+      </section>
+
+      <section id="risking-five" aria-labelledby="risking-five-heading">
+        <p class="article-kicker">06</p>
+        <h2 id="risking-five-heading">Risking five to make one</h2>
+        <p>
+          The third-fill version risks $5 for a $1 target. The method trades a large potential loss
+          for a wider stop and a closer exit. Its operating target is six winning trades out of
+          seven.
+        </p>
+        <p>
+          The appeal is practical. A wide stop tolerates more market noise, while the closer target
+          asks less of each move. Fewer tight stop-outs may also reduce emotional re-entry and
+          repeated transaction costs.
+        </p>
+        <p>
+          A wide stop does not create an edge by itself. The approach depends on selective entries,
+          a very high realized win rate, consistent sizing, and the discipline to accept the full
+          loss when the setup fails.
+        </p>
+        <ul class="article-list">
+          <li>Judge performance across a series of trades, not one result.</li>
+          <li>Do not tighten the shared stop after deeper orders fill.</li>
+          <li>Do not add a fourth order when the planned setup is invalidated.</li>
+          <li>Track whether the live win rate supports the loss size.</li>
+        </ul>
+      </section>
+
+      <section id="win-rate-checklist" aria-labelledby="win-rate-checklist-heading">
+        <p class="article-kicker">07</p>
+        <h2 id="win-rate-checklist-heading">My checklist for cleaner setups</h2>
+
+        <h3>Market conditions</h3>
+        <ul class="article-list">
+          <li>Prefer orderly price action with a readable Elliott-wave structure.</li>
+          <li>Avoid extreme volatility that can run through every planned level.</li>
+          <li>Avoid FOMC decisions, US elections, CPI releases, war, and geopolitical shocks.</li>
+          <li>Avoid the New York session open between 8:00 and 10:00 a.m. Eastern.</li>
+        </ul>
+
+        <h3>Timeframes and bias</h3>
+        <ul class="article-list">
+          <li>Use the 3-minute chart for the entry setup.</li>
+          <li>Check the daily chart first for trend direction and major levels.</li>
+          <li>Choose a long or short daily bias before scanning entries.</li>
+        </ul>
+
+        <h3>Levels and review</h3>
+        <ul class="article-list">
+          <li>Mark the previous day's high and low, weekly levels, and round numbers.</li>
+          <li>Watch how price breaks or rejects those areas.</li>
+          <li>Backtest the complete rules on historical charts.</li>
+          <li>Record entries, fills, exits, invalidations, and the running win rate.</li>
+        </ul>
+        <p>
+          The best setups often appear in uneventful conditions. Waiting is part of the strategy.
+        </p>
+      </section>
+
+      <section id="disclaimer-resources" aria-labelledby="disclaimer-resources-heading">
+        <p class="article-kicker">08</p>
+        <h2 id="disclaimer-resources-heading">Disclaimer and learning resources</h2>
+        <p>
+          Trading leveraged crypto derivatives can result in substantial losses. Past results do
+          not predict future performance. This strategy is not guaranteed, and your results may be
+          materially different. Start small, use money you can afford to lose, research the market,
+          check local regulations, and seek qualified financial advice for your circumstances.
+        </p>
+        <p>This page is educational content. It is not financial advice.</p>
+
+        <h3>Risk management</h3>
+        <ul class="article-list">
+          <li><cite>Trading in the Zone</cite> by Mark Douglas</li>
+          <li><cite>Technical Analysis of the Financial Markets</cite> by John J. Murphy</li>
+        </ul>
+
+        <h3>Further study</h3>
+        <ul class="article-list">
+          <li>Elliott Wave theory</li>
+          <li>Fibonacci trading methods</li>
+          <li>Price-action trading</li>
+        </ul>
+      </section>
+
+      <section id="trading-tools" class="article-references" aria-labelledby="trading-tools-heading">
+        <p class="article-kicker">09</p>
+        <h2 id="trading-tools-heading">Trading tools</h2>
+        <ol>
+          <li><a href="https://www.tradingview.com/">TradingView charting platform</a></li>
+          <li>
+            <a href="https://www.bybit.com/invite?ref=BDYKRLN">Bybit exchange referral link</a>.
+            Choose an exchange that is available and legal in your country.
+          </li>
+          <li>
+            <a href="https://docs.google.com/spreadsheets/d/16-xoM2-JJkOANUb67w9ADrl8J-ZGC7qt7pl5h1fg93I/edit?gid=0#gid=0"
+              >DCA strategy calculator</a
+            >
+          </li>
+          <li>
+            <a href="https://catkin-corn-f46.notion.site/Trading-Journal-111d803b72f58044aad4e0d58e1ef831"
+              >Notion trading journal</a
+            >
+          </li>
+          <li><a href="https://www.forexfactory.com/">Forex Factory calendar and news</a></li>
+          <li><a href="https://edition.cnn.com/">CNN news</a></li>
+          <li>
+            <a href="https://www.tradingview.com/economic-calendar/">TradingView economic calendar</a>
+          </li>
+        </ol>
+        <p class="finance-updated">Published Sep 2026 · Results recorded Sep 2024</p>
+      </section>
+    </div>
+  </article>
+
+  <dialog class="image-viewer" data-image-viewer aria-labelledby="image-viewer-title">
+    <div class="image-viewer-header">
+      <h2 id="image-viewer-title">Expanded chart</h2>
+      <button type="button" data-viewer-close aria-label="Close expanded image">Close</button>
+    </div>
+    <div class="image-viewer-body">
+      <img src="" alt="" data-viewer-image />
+    </div>
+    <p data-viewer-caption></p>
+  </dialog>
+</BaseLayout>
+
+<script>
+  const rail = document.querySelector<HTMLElement>("[data-finance-rail]");
+  const railLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-section-link]"));
+  const trackedSections = railLinks
+    .map((link) => document.getElementById(link.dataset.sectionLink ?? ""))
+    .filter((section): section is HTMLElement => section !== null);
+
+  let frame = 0;
+
+  const updateRail = () => {
+    const marker = window.innerHeight * 0.36;
+    let activeIndex = 0;
+
+    trackedSections.forEach((section, index) => {
+      if (section.getBoundingClientRect().top <= marker) activeIndex = index;
+    });
+
+    railLinks.forEach((link, index) => {
+      link.dataset.state = index < activeIndex ? "complete" : index === activeIndex ? "active" : "pending";
+      if (index === activeIndex) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  };
+
+  const scheduleRailUpdate = () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(updateRail);
+  };
+
+  if (rail && trackedSections.length) {
+    updateRail();
+    window.addEventListener("scroll", scheduleRailUpdate, { passive: true });
+    window.addEventListener("resize", scheduleRailUpdate);
+  }
+
+  const viewer = document.querySelector<HTMLDialogElement>("[data-image-viewer]");
+  const viewerImage = viewer?.querySelector<HTMLImageElement>("[data-viewer-image]");
+  const viewerCaption = viewer?.querySelector<HTMLElement>("[data-viewer-caption]");
+  const closeButton = viewer?.querySelector<HTMLButtonElement>("[data-viewer-close]");
+
+  document.querySelectorAll<HTMLButtonElement>("[data-viewer-trigger]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      if (!viewer || !viewerImage || !viewerCaption) return;
+      viewerImage.src = trigger.dataset.fullSrc ?? "";
+      viewerImage.alt = trigger.dataset.fullAlt ?? "";
+      viewerCaption.textContent = trigger.dataset.fullCaption ?? "";
+      viewer.showModal();
+      closeButton?.focus();
+    });
+  });
+
+  closeButton?.addEventListener("click", () => viewer?.close());
+  viewer?.addEventListener("click", (event) => {
+    if (event.target === viewer) viewer.close();
+  });
+</script>
