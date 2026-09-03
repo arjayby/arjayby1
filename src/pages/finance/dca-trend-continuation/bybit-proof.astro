@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import monthlyPnl from "@/assets/finance/monthly-pnl.jpg";
+import tradingPerformance from "@/assets/finance/trading-performance.jpg";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Bybit proof"
+  description="The Bybit account screenshots behind the September 2024 DCA trend continuation case study."
+  wide
+>
+  <article class="page-stack writing-article finance-article proof-article">
+    <header class="article-header">
+      <a class="back-link" href="/finance/dca-trend-continuation">Case study</a>
+      <div class="article-heading">
+        <p class="article-kicker">September 2024</p>
+        <h1>Bybit proof</h1>
+        <p class="article-deck">The account screenshots behind the $4,700 result</p>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <section aria-label="Bybit result screenshots">
+        <div class="proof-grid wide-block">
+          <figure class="finance-figure proof-figure">
+            <a href={monthlyPnl.src} target="_blank" rel="noreferrer" aria-label="Open the cumulative P and L screenshot at full size">
+              <Image
+                src={monthlyPnl}
+                alt="Mobile Bybit dashboard showing cumulative profit and loss of 4,712.60 US dollars and cumulative return of 114.45 percent through September 30, 2024."
+                widths={[360, 540, 720]}
+                sizes="(max-width: 42rem) 72vw, 20rem"
+                format="webp"
+                loading="eager"
+              />
+            </a>
+            <figcaption>$4,712.60 cumulative P&amp;L and +114.45% on Sep 30, 2024.</figcaption>
+          </figure>
+
+          <figure class="finance-figure proof-figure">
+            <a href={tradingPerformance.src} target="_blank" rel="noreferrer" aria-label="Open the trading-performance screenshot at full size">
+              <Image
+                src={tradingPerformance}
+                alt="Mobile Bybit dashboard showing 4,700.85 US dollars profit on SOLUSDT, 20 closed positions, and a 100 percent win rate for the selected period."
+                widths={[360, 540, 720]}
+                sizes="(max-width: 42rem) 72vw, 20rem"
+                format="webp"
+                loading="eager"
+              />
+            </a>
+            <figcaption>$4,700.85 across 20 closed positions in the selected 30-day view.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

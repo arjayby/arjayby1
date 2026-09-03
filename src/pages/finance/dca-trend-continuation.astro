@@ -7,11 +7,9 @@ import limitOrderTwoDiagram from "@/assets/finance/limit-order-two-diagram.png";
 import longLimitOne from "@/assets/finance/long-limit-one.png";
 import longLimitThree from "@/assets/finance/long-limit-three.png";
 import longLimitTwo from "@/assets/finance/long-limit-two.png";
-import monthlyPnl from "@/assets/finance/monthly-pnl.jpg";
 import shortLimitOne from "@/assets/finance/short-limit-one.png";
 import shortLimitThree from "@/assets/finance/short-limit-three.png";
 import shortLimitTwo from "@/assets/finance/short-limit-two.png";
-import tradingPerformance from "@/assets/finance/trading-performance.jpg";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const sections = [
@@ -139,51 +137,11 @@ const tradeExamples = [
         </div>
       </dl>
 
-      <div class="result-grid wide-block">
-        <figure class="finance-figure finance-figure-phone">
-          <button
-            class="image-viewer-trigger"
-            type="button"
-            data-viewer-trigger
-            data-full-src={monthlyPnl.src}
-            data-full-alt="Mobile trading dashboard showing cumulative profit and loss of 4,712.60 US dollars and cumulative return of 114.45 percent through September 30, 2024."
-            data-full-caption="Cumulative P&amp;L through Sep 30, 2024"
-            aria-label="Open the cumulative profit screenshot at full size"
-          >
-            <Image
-              src={monthlyPnl}
-              alt="Mobile trading dashboard showing cumulative profit and loss of 4,712.60 US dollars and cumulative return of 114.45 percent through September 30, 2024."
-              widths={[360, 540, 720]}
-              sizes="(max-width: 42rem) 78vw, 26rem"
-              format="webp"
-              loading="eager"
-            />
-          </button>
-          <figcaption>$4,712.60 cumulative P&amp;L and +114.45% on Sep 30, 2024.</figcaption>
-        </figure>
-
-        <figure class="finance-figure finance-figure-phone">
-          <button
-            class="image-viewer-trigger"
-            type="button"
-            data-viewer-trigger
-            data-full-src={tradingPerformance.src}
-            data-full-alt="Mobile trading dashboard showing 4,700.85 US dollars profit on SOLUSDT, 20 closed positions, and a 100 percent win rate for the selected period."
-            data-full-caption="Closed-position performance for the selected 30-day view"
-            aria-label="Open the trading-performance screenshot at full size"
-          >
-            <Image
-              src={tradingPerformance}
-              alt="Mobile trading dashboard showing 4,700.85 US dollars profit on SOLUSDT, 20 closed positions, and a 100 percent win rate for the selected period."
-              widths={[360, 540, 720]}
-              sizes="(max-width: 42rem) 78vw, 26rem"
-              format="webp"
-              loading="eager"
-            />
-          </button>
-          <figcaption>$4,700.85 across 20 closed positions in the selected 30-day view.</figcaption>
-        </figure>
-      </div>
+      <p class="finance-proof-link">
+        <a href="/finance/dca-trend-continuation/bybit-proof">
+          View the Bybit proof →
+        </a>
+      </p>
 
       <aside class="article-note finance-risk-note">
         <p>

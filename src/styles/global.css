@@ -510,19 +510,18 @@
     font-weight: 700;
   }
 
-  .result-grid,
   .diagram-grid,
-  .trade-grid {
+  .trade-grid,
+  .proof-grid {
     display: grid;
     gap: 1rem;
   }
 
-  .result-grid {
-    width: min(29rem, calc(100vw - 2rem));
-    grid-template-columns: repeat(2, minmax(0, 14rem));
+  .proof-grid {
+    width: min(41rem, calc(100vw - 2rem));
+    grid-template-columns: repeat(2, minmax(0, 20rem));
     align-items: start;
     justify-content: center;
-    gap: 1rem;
   }
 
   .diagram-grid {
@@ -540,16 +539,6 @@
     gap: 0.5rem;
     min-width: 0;
     margin: 0;
-  }
-
-  .finance-figure-phone {
-    width: min(100%, 14rem);
-    justify-items: center;
-    justify-self: center;
-  }
-
-  .finance-figure-phone .image-viewer-trigger {
-    width: 100%;
   }
 
   .finance-figure img {
@@ -609,6 +598,31 @@
 
   .finance-risk-note {
     margin-top: 0;
+  }
+
+  .finance-proof-link {
+    margin: 0;
+  }
+
+  .finance-proof-link a {
+    width: fit-content;
+    font-weight: 700;
+    text-decoration-color: var(--border);
+    text-underline-offset: 0.18rem;
+    text-transform: uppercase;
+  }
+
+  .finance-proof-link a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .proof-figure a {
+    display: block;
+  }
+
+  .proof-figure a:focus-visible {
+    outline: 1px solid var(--foreground);
+    outline-offset: 0.25rem;
   }
 
   .strategy-table-wrap {
@@ -842,18 +856,18 @@
     width: 100%;
   }
 
-  .result-grid,
   .diagram-grid,
-  .trade-grid {
+  .trade-grid,
+  .proof-grid {
     grid-template-columns: 1fr;
   }
 
-  .finance-figure-phone .image-viewer-trigger {
-    width: 100%;
+  .proof-grid {
+    width: min(72vw, 20rem);
   }
 
-  .finance-figure-phone {
-    width: min(58vw, 14rem);
+  .proof-article {
+    padding-top: 7.5rem;
   }
 
   .finance-figure figcaption {
