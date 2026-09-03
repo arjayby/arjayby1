@@ -199,6 +199,52 @@
     color: var(--foreground);
   }
 
+  .kousa-gallery {
+    display: grid;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .kousa-gallery h2 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: inherit;
+    text-transform: uppercase;
+  }
+
+  .kousa-gallery p {
+    margin: 0;
+    color: var(--muted-foreground);
+  }
+
+  .kousa-gallery ul {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0 0 0.5rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-color: var(--muted-foreground) var(--muted);
+    scrollbar-width: thin;
+    list-style: none;
+  }
+
+  .kousa-gallery li {
+    flex: 0 0 clamp(6rem, 23vw, 7.5rem);
+    scroll-snap-align: start;
+  }
+
+  .kousa-gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    object-fit: cover;
+  }
+
   .entry-list {
     display: flex;
     flex-direction: column;

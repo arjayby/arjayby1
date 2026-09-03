@@ -1,6 +1,21 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import TooltipLink from "@/components/TooltipLink";
+
+const kousaImages = [
+  { src: "/images/kousa/chrome-bloom.webp", alt: "Chrome flower sculpture" },
+  { src: "/images/kousa/glass-hare.webp", alt: "Glass hare sculpture" },
+  { src: "/images/kousa/iridescent-film.webp", alt: "Iridescent film" },
+  { src: "/images/kousa/burgundy-roses.webp", alt: "Burgundy roses" },
+  { src: "/images/kousa/teal-fabric.webp", alt: "Teal fabric folds" },
+  { src: "/images/kousa/desert-arch.webp", alt: "Desert arch" },
+  { src: "/images/kousa/sculpted-sneaker.webp", alt: "Sculpted sneaker" },
+  { src: "/images/kousa/distorted-fox.webp", alt: "Distorted fox portrait" },
+  { src: "/images/kousa/sea-cave.webp", alt: "Sea cave" },
+  { src: "/images/kousa/amber-fragrance.webp", alt: "Amber fragrance bottle" },
+  { src: "/images/kousa/moss-stream.webp", alt: "Mossy stream" },
+  { src: "/images/kousa/coral-fan.webp", alt: "Coral fan" },
+];
 ---
 
 <BaseLayout
@@ -16,25 +31,43 @@ import TooltipLink from "@/components/TooltipLink";
         <p>
           I build design tools and AI products. I care a lot about how they look
           and feel.
-
-          <p>
-            These days, I'm exploring better agentic development workflows and
-            agentic payments with x402 while building <TooltipLink
-              href="https://www.kousa.app"
-              client:load>Kousa</TooltipLink
-            >, a node-based studio for generating and connecting AI media
-          </p>
-          <p>
-            Peaked Masters rank in both <TooltipLink
-              href="https://www.ea.com/games/apex-legends"
-              client:load>Apex</TooltipLink
-            > and <TooltipLink
-              href="https://www.leagueoflegends.com/"
-              client:load>League</TooltipLink
-            >.
-          </p>
+        </p>
+        <p>
+          These days, I'm exploring better agentic development workflows and
+          agentic payments with x402 while building <TooltipLink
+            href="https://www.kousa.app"
+            client:load>Kousa</TooltipLink
+          >, a node-based studio for generating and connecting AI media.
+        </p>
+        <p>
+          Peaked Masters rank in both <TooltipLink
+            href="https://www.ea.com/games/apex-legends"
+            client:load>Apex</TooltipLink
+          > and <TooltipLink href="https://www.leagueoflegends.com/" client:load
+            >League</TooltipLink
+          >.
         </p>
       </div>
+
+      <section class="kousa-gallery" aria-labelledby="kousa-gallery-heading">
+        <h2 id="kousa-gallery-heading">Gallery</h2>
+        <p>Images I've generated for production work and personal projects.</p>
+        <ul tabindex="0" aria-label="Kousa image gallery">
+          {
+            kousaImages.map(({ src, alt }) => (
+              <li>
+                <img
+                  src={src}
+                  alt={alt}
+                  width="768"
+                  height="768"
+                  loading="lazy"
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </section>
     </div>
   </article>
 </BaseLayout>
