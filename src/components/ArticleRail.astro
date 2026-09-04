@@ -1,0 +1,73 @@
+---
+interface RailSection {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  sections: RailSection[];
+  ariaLabel?: string;
+}
+
+const { sections, ariaLabel = "Article sections" } = Astro.props;
+---
+
+<nav class="article-rail" aria-label={ariaLabel} data-article-rail>
+  <ol>
+    {
+      sections.map(({ id, label }, index) => (
+        <li>
+          <a
+            href={`#${id}`}
+            aria-label={label}
+            data-section-link={id}
+            data-state={index === 0 ? "active" : "pending"}
+          >
+            <span class="article-rail-mark" aria-hidden="true" />
+            <span class="article-rail-label">{label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-article-rail]").forEach((rail) => {
+    const railLinks = Array.from(
+      rail.querySelectorAll<HTMLAnchorElement>("[data-section-link]"),
+    );
+    const trackedSections = railLinks
+      .map((link) => document.getElementById(link.dataset.sectionLink ?? ""))
+      .filter((section): section is HTMLElement => section !== null);
+
+    if (!trackedSections.length) return;
+
+    let frame = 0;
+
+    const updateRail = () => {
+      const marker = window.innerHeight * 0.36;
+      let activeIndex = 0;
+
+      trackedSections.forEach((section, index) => {
+        if (section.getBoundingClientRect().top <= marker) activeIndex = index;
+      });
+
+      railLinks.forEach((link, index) => {
+        link.dataset.state =
+          index < activeIndex ? "complete" : index === activeIndex ? "active" : "pending";
+        if (index === activeIndex) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    };
+
+    const scheduleRailUpdate = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateRail);
+    };
+
+    updateRail();
+    window.addEventListener("scroll", scheduleRailUpdate, { passive: true });
+    window.addEventListener("resize", scheduleRailUpdate);
+  });
+</script>

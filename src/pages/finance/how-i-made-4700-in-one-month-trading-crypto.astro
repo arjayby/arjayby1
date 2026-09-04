@@ -10,6 +10,7 @@ import longLimitTwo from "@/assets/finance/long-limit-two.png";
 import shortLimitOne from "@/assets/finance/short-limit-one.png";
 import shortLimitThree from "@/assets/finance/short-limit-three.png";
 import shortLimitTwo from "@/assets/finance/short-limit-two.png";
+import ArticleRail from "@/components/ArticleRail.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const sections = [
@@ -88,25 +89,7 @@ const tradeExamples = [
   wide
 >
   <article class="page-stack writing-article finance-article">
-    <nav class="finance-rail" aria-label="Article sections" data-finance-rail>
-      <ol>
-        {
-          sections.map(({ id, label }, index) => (
-            <li>
-              <a
-                href={`#${id}`}
-                aria-label={label}
-                data-section-link={id}
-                data-state={index === 0 ? "active" : "pending"}
-              >
-                <span class="finance-rail-mark" aria-hidden="true" />
-                <span class="finance-rail-label">{label}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ol>
-    </nav>
+    <ArticleRail sections={sections} />
 
     <header class="article-header">
       <a class="back-link" href="/finance">Finance</a>
@@ -508,40 +491,6 @@ const tradeExamples = [
 </BaseLayout>
 
 <script>
-  const rail = document.querySelector<HTMLElement>("[data-finance-rail]");
-  const railLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-section-link]"));
-  const trackedSections = railLinks
-    .map((link) => document.getElementById(link.dataset.sectionLink ?? ""))
-    .filter((section): section is HTMLElement => section !== null);
-
-  let frame = 0;
-
-  const updateRail = () => {
-    const marker = window.innerHeight * 0.36;
-    let activeIndex = 0;
-
-    trackedSections.forEach((section, index) => {
-      if (section.getBoundingClientRect().top <= marker) activeIndex = index;
-    });
-
-    railLinks.forEach((link, index) => {
-      link.dataset.state = index < activeIndex ? "complete" : index === activeIndex ? "active" : "pending";
-      if (index === activeIndex) link.setAttribute("aria-current", "location");
-      else link.removeAttribute("aria-current");
-    });
-  };
-
-  const scheduleRailUpdate = () => {
-    cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(updateRail);
-  };
-
-  if (rail && trackedSections.length) {
-    updateRail();
-    window.addEventListener("scroll", scheduleRailUpdate, { passive: true });
-    window.addEventListener("resize", scheduleRailUpdate);
-  }
-
   const viewer = document.querySelector<HTMLDialogElement>("[data-image-viewer]");
   const viewerImage = viewer?.querySelector<HTMLImageElement>("[data-viewer-image]");
   const viewerCaption = viewer?.querySelector<HTMLElement>("[data-viewer-caption]");

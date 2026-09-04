@@ -2,7 +2,18 @@
 import aiChatImage from "@/assets/unslop-your-copy/ai-chat.png";
 import projectManagementImage from "@/assets/unslop-your-copy/project-management.png";
 import salesDataImage from "@/assets/unslop-your-copy/sales-data.png";
+import ArticleRail from "@/components/ArticleRail.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const sections = [
+  { id: "the-web-sounds-the-same", label: "The web sounds the same" },
+  { id: "aviation-solved-a-harder-problem", label: "Aviation solved a harder problem" },
+  { id: "control-the-words", label: "Control the words" },
+  { id: "three-real-examples", label: "Three real examples" },
+  { id: "the-editing-pass", label: "The editing pass" },
+  { id: "editing-is-still-your-job", label: "Editing is still your job" },
+  { id: "references", label: "References" },
+];
 ---
 
 <BaseLayout
@@ -10,6 +21,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="What ASD-STE100 can teach us about writing clear copy for websites and apps."
 >
   <article class="page-stack writing-article">
+    <ArticleRail sections={sections} />
+
     <header class="article-header">
       <a class="back-link" href="/writing">Writing</a>
       <div class="article-heading">
