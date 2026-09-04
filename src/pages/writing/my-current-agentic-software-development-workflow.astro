@@ -1,0 +1,321 @@
+---
+import codexSkillsImage from "@/assets/my-current-agentic-software-development-workflow/codex-skills-used.png";
+import ArticleRail from "@/components/ArticleRail.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const sections = [
+  { id: "the-workflow-is-the-point", label: "The workflow is the point" },
+  { id: "planning-needs-my-attention", label: "Planning needs my attention" },
+  { id: "turn-the-conversation-into-work", label: "Turn the conversation into work" },
+  { id: "one-ticket-one-session-one-worktree", label: "One ticket, one session, one worktree" },
+  { id: "the-small-task-shortcut", label: "The small-task shortcut" },
+  { id: "ui-work-needs-two-loops", label: "UI work needs two loops" },
+  { id: "parallel-work-follows-the-tickets", label: "Parallel work follows the tickets" },
+  { id: "why-i-do-not-read-every-diff", label: "Why I do not read every diff" },
+  { id: "the-tools-can-change", label: "The tools can change" },
+  { id: "this-is-a-snapshot", label: "This is a snapshot" },
+  { id: "references", label: "References" },
+];
+---
+
+<BaseLayout
+  title="My current agentic software development workflow"
+  description="How I plan, split, implement, test, and merge software with AI coding agents."
+>
+  <article class="page-stack writing-article">
+    <ArticleRail sections={sections} />
+
+    <header class="article-header">
+      <a class="back-link" href="/writing">Writing</a>
+      <div class="article-heading">
+        <p class="article-kicker">Sep 2026</p>
+        <h1>My current agentic software development workflow</h1>
+        <p class="article-deck">
+          Where I spend my attention, what I hand to agents, and why I rarely read every line they
+          write
+        </p>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <section aria-labelledby="the-workflow-is-the-point">
+        <h2 id="the-workflow-is-the-point">The workflow is the point</h2>
+        <p>
+          Between August 6 and September 4, Codex recorded 1,490 skill invocations while I worked.
+          That sounds like a lot of automation. I still refuse to automate the part that matters
+          most. Planning.
+        </p>
+        <p>
+          The number is not a quality score. It only shows that this is how I work every day. I am
+          not describing a workflow I tried for a weekend.
+        </p>
+
+        <figure class="article-figure analytics-figure">
+          <img
+            src={codexSkillsImage.src}
+            alt="Codex analytics chart showing 1,490 skill invocations between August 6 and September 4, including Implement, Code Review, Grill Me, Browser, Grill With Docs, Shadcn, Research, and Unslop."
+            width={codexSkillsImage.width}
+            height={codexSkillsImage.height}
+            loading="eager"
+            decoding="async"
+          />
+          <figcaption>
+            My Codex skill usage from August 6 to September 4. Volume is evidence of use, not proof
+            that the process is correct.
+          </figcaption>
+        </figure>
+
+        <p>The full path looks like this:</p>
+        <figure class="workflow-figure" aria-labelledby="workflow-caption">
+          <ol class="workflow-flow">
+            <li><span>01</span>Grill</li>
+            <li><span>02</span>Spec</li>
+            <li><span>03</span>Tickets</li>
+            <li><span>04</span>Implement</li>
+            <li><span>05</span>Verify</li>
+            <li><span>06</span>Merge</li>
+          </ol>
+          <figcaption id="workflow-caption">
+            I stay present for the first three steps. Fresh agent sessions take over once the work
+            is settled.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="planning-needs-my-attention">
+        <h2 id="planning-needs-my-attention">Planning needs my attention</h2>
+        <p>
+          For a new app or feature, I start with Matt Pocock's
+          <a href="https://github.com/mattpocock/skills">engineering skills</a>.<sup>
+            <a href="#ref-1">1</a>
+          </sup>
+          I use
+          <code>grill-me</code> when the idea is not tied to an existing codebase. Inside a repo, I
+          use
+          <a href="https://github.com/mattpocock/skills/blob/main/docs/engineering/grill-with-docs.md">
+            <code>grill-with-docs</code>
+          </a>.
+        </p>
+        <p>
+          This is the human-in-the-loop phase. The agent asks one question at a time, recommends an
+          answer, and keeps following the decision tree until we agree on what to build. I give this
+          phase my full attention. I cannot go AFK while the agent is asking me what the product
+          should do.
+        </p>
+        <p>
+          The grilling catches unclear behavior, awkward edge cases, and disagreements in language
+          before they turn into code. It is slower than sending one large implementation prompt.
+          That is fine. The time I spend here removes decisions from the expensive part of the
+          process.
+        </p>
+      </section>
+
+      <section aria-labelledby="turn-the-conversation-into-work">
+        <h2 id="turn-the-conversation-into-work">Turn the conversation into work</h2>
+        <p>
+          Once we share an understanding, I stay in the same session and invoke
+          <a href="https://github.com/mattpocock/skills/blob/main/docs/engineering/to-spec.md">
+            <code>to-spec</code>
+          </a>. The back-and-forth is valuable context. Starting a fresh chat here would throw away
+          the reasons behind the decisions.
+        </p>
+        <p>
+          The skill turns that conversation into a spec with the problem, user stories,
+          implementation decisions, testing decisions, and explicit exclusions. I currently
+          publish the spec to GitHub Issues. Linear would work too.
+        </p>
+        <p>
+          Next I use
+          <a href="https://github.com/mattpocock/skills/blob/main/docs/engineering/to-tickets.md">
+            <code>to-tickets</code>
+          </a>. It breaks the spec into small vertical slices. Each ticket delivers behavior across
+          the layers it touches, has its own acceptance criteria, and names the other tickets that
+          block it.
+        </p>
+        <p>
+          Ticket size matters because long sessions get worse as irrelevant history and tool output
+          accumulate. Dex Horthy calls the degraded part of a crowded context window the
+          <a href="https://ai.engineer/talks/context-engineering-for-complex-codebases">
+            "dumb zone"
+          </a>.<sup><a href="#ref-2">2</a></sup> I do not treat it as a fixed percentage. I treat it
+          as a reason to give a fresh agent one bounded job.
+        </p>
+      </section>
+
+      <section aria-labelledby="one-ticket-one-session-one-worktree">
+        <h2 id="one-ticket-one-session-one-worktree">One ticket, one session, one worktree</h2>
+        <p>
+          My implementation unit is strict: one ticket, one session, one Git worktree, one
+          implementation. I point the session at the ticket and invoke
+          <a href="https://github.com/mattpocock/skills/blob/main/docs/engineering/implement.md">
+            <code>implement</code>
+          </a>.
+        </p>
+        <p>
+          By then the product decisions are already made. The agent can focus on execution. The
+          implementation skill uses TDD at the agreed test seams, runs type checks as it works, runs
+          the full test suite at the end, and calls a separate code-review skill before it commits.
+          For browser behavior, I also expect Playwright coverage where it makes sense.
+        </p>
+        <p>
+          I sometimes describe this as testing a ticket to 100 percent. I do not mean 100 percent
+          code coverage or zero chance of a defect. I mean every acceptance criterion in the ticket
+          must have evidence before the implementation is done.
+        </p>
+      </section>
+
+      <section aria-labelledby="the-small-task-shortcut">
+        <h2 id="the-small-task-shortcut">The small-task shortcut</h2>
+        <p>
+          Not every change needs a spec and a ticket breakdown. Adding a functional option to a menu
+          or fixing a contained bug can go straight to <code>implement</code> in the current session.
+        </p>
+        <p>
+          I still use <code>grill-me</code> when a small task hides uncertain behavior or edge cases.
+          The shortcut depends on how many decisions remain, not how many lines of code I expect.
+          Once the behavior is clear, I skip <code>to-spec</code> and <code>to-tickets</code>.
+        </p>
+      </section>
+
+      <section aria-labelledby="ui-work-needs-two-loops">
+        <h2 id="ui-work-needs-two-loops">UI work needs two loops</h2>
+        <p>
+          For UI changes, I attach a reference image and keep iterating until the result matches what
+          I had in mind. This is one place where my eyes remain part of the test. A browser test can
+          prove that a menu opens, a route changes, or state persists. It cannot decide whether the
+          page looks right.
+        </p>
+        <p>
+          I run both loops. Visual comparison handles appearance. Playwright handles behavior. A
+          screenshot does not replace interaction tests, and passing interaction tests do not make a
+          weak visual result acceptable.
+        </p>
+      </section>
+
+      <section aria-labelledby="parallel-work-follows-the-tickets">
+        <h2 id="parallel-work-follows-the-tickets">Parallel work follows the tickets</h2>
+        <p>
+          The blocking links from <code>to-tickets</code> decide what can run at the same time. If
+          three tickets have no unfinished blockers, I can open three sessions. Each session gets
+          its own worktree and its own ticket. I start the implementations, go AFK, and wait for the
+          Codex notifications.
+        </p>
+        <p>
+          Parallel work occasionally produces merge conflicts. When that happens, I use the
+          <a
+            href="https://github.com/mattpocock/skills/blob/main/docs/engineering/resolving-merge-conflicts.md"
+          >
+            <code>resolving-merge-conflicts</code>
+          </a>
+          skill. It reads the intent behind both changes, resolves the hunks, and runs the project's
+          checks again.
+        </p>
+        <p>
+          Once a branch is ready, the official GitHub plugin's
+          <a href="https://github.com/openai/plugins/blob/main/plugins/github/skills/yeet/SKILL.md">
+            <code>github:yeet</code>
+          </a>
+          skill checks the change, commits it, pushes the branch, and opens a draft PR.<sup>
+            <a href="#ref-3">3</a>
+          </sup>
+        </p>
+      </section>
+
+      <section aria-labelledby="why-i-do-not-read-every-diff">
+        <h2 id="why-i-do-not-read-every-diff">Why I do not read every diff</h2>
+        <p>
+          This still feels strange to say, but I rarely review the generated code line by line. I
+          open the app, exercise the feature, and confirm that it behaves as intended. When that
+          check passes, I approve the PR and merge it.
+        </p>
+        <p>
+          I am not trusting a single model response. I am trusting the whole chain: the decisions I
+          made during grilling, the spec, bounded tickets, agreed test seams, acceptance criteria,
+          the test suite, Playwright, and the implementation skill's code review. I moved most of my
+          scrutiny before the code and focused the final human check on the product.
+        </p>
+        <p>
+          There are exceptions. I scan the code for authentication, billing, security-sensitive
+          work, migrations, destructive data operations, and changes whose risks the automated
+          checks cannot prove. This is a fast, targeted read rather than a detailed review of every
+          line.
+        </p>
+        <p>
+          So far, whenever I have manually checked the finished app, the implementation has
+          delivered what we agreed. That is a report from my own work, not a promise that the method
+          removes defects or fits every team.
+        </p>
+      </section>
+
+      <section aria-labelledby="the-tools-can-change">
+        <h2 id="the-tools-can-change">The tools can change</h2>
+        <p>
+          I started using this workflow with Claude Code and later moved to Codex. The analytics
+          image comes from Codex, but the workflow is agent-agnostic. It depends on an agent that can
+          follow skill files, work inside isolated Git worktrees, run the project's tools, and
+          report which checks passed.
+        </p>
+        <p>
+          I also use Cursor's
+          <a href="https://www.skills.sh/cursor/plugins/unslop"><code>unslop</code> skill</a> for
+          product copy, documentation, and PR text.<sup><a href="#ref-4">4</a></sup> It is useful
+          when an agent's default explanation is so dense that I cannot understand it. I ask for the
+          same meaning in plain language, then make the decision myself.
+        </p>
+        <p>
+          Addy Osmani has a similar
+          <a href="https://github.com/addyosmani/agent-skills">agent-skills collection</a> that covers
+          requirements, planning, implementation, testing, review, and shipping.<sup>
+            <a href="#ref-5">5</a>
+          </sup>
+          His collection can select skills automatically based on the task. Matt Pocock's main
+          engineering handoffs are deliberately invoked by the human. I have not tried Addy's
+          collection yet, but it is close enough to this workflow that I want to try it.
+        </p>
+      </section>
+
+      <section aria-labelledby="this-is-a-snapshot">
+        <h2 id="this-is-a-snapshot">This is a snapshot</h2>
+        <p>
+          The word "current" in the title is deliberate. Models will change. Skills will change. I
+          expect this workflow to change with them.
+        </p>
+        <p>
+          I want to keep spending my attention while the product is still a set of decisions. Once
+          those decisions are explicit, each agent gets one ticket with acceptance criteria and a
+          fresh context window.
+        </p>
+      </section>
+
+      <section class="article-references" aria-labelledby="references">
+        <h2 id="references">References</h2>
+        <ol>
+          <li id="ref-1">
+            Matt Pocock,
+            <a href="https://github.com/mattpocock/skills">Engineering skills</a>.
+          </li>
+          <li id="ref-2">
+            Dex Horthy,
+            <a href="https://ai.engineer/talks/context-engineering-for-complex-codebases">
+              No Vibes Allowed: Solving Hard Problems in Complex Codebases
+            </a>.
+          </li>
+          <li id="ref-3">
+            OpenAI,
+            <a href="https://github.com/openai/plugins/blob/main/plugins/github/skills/yeet/SKILL.md">
+              GitHub Yeet skill
+            </a>.
+          </li>
+          <li id="ref-4">
+            Cursor,
+            <a href="https://www.skills.sh/cursor/plugins/unslop">Unslop editing skill</a>.
+          </li>
+          <li id="ref-5">
+            Addy Osmani,
+            <a href="https://github.com/addyosmani/agent-skills">Agent Skills</a>.
+          </li>
+        </ol>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

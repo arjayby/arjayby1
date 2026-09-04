@@ -366,6 +366,7 @@
   .article-body,
   .article-body section {
     display: grid;
+    min-width: 0;
   }
 
   .article-body {
@@ -373,6 +374,7 @@
   }
 
   .article-body section {
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.85rem;
   }
 
@@ -442,6 +444,74 @@
     margin-block: 0.1rem 0.25rem;
     border: 1px solid var(--border);
     border-radius: var(--radius);
+  }
+
+  .article-figure,
+  .workflow-figure {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0.35rem 0;
+  }
+
+  .article-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: white;
+  }
+
+  .article-figure figcaption,
+  .workflow-figure figcaption {
+    color: var(--muted-foreground);
+    font-size: 0.6875rem;
+  }
+
+  .analytics-figure {
+    width: 100%;
+  }
+
+  .analytics-figure figcaption {
+    width: min(100%, 32rem);
+    margin-inline: auto;
+  }
+
+  .workflow-flow {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    list-style: none;
+  }
+
+  .workflow-flow li {
+    position: relative;
+    display: grid;
+    gap: 0.3rem;
+    min-width: 0;
+    padding: 0.75rem 0.55rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+
+  .workflow-flow li + li {
+    border-left: 1px solid var(--border);
+  }
+
+  .workflow-flow li span {
+    color: var(--muted-foreground);
+    font-size: 0.6875rem;
+    font-weight: 400;
+  }
+
+  .article-body code:not(.article-prompt code) {
+    padding: 0.05rem 0.2rem;
+    border-radius: var(--radius);
+    background: var(--muted);
+    font: inherit;
   }
 
   .copy-example .example-label:not(:first-child) {
@@ -896,6 +966,22 @@
   .trade-grid,
   .proof-grid {
     grid-template-columns: 1fr;
+  }
+
+  .workflow-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workflow-flow li + li {
+    border-left: 0;
+  }
+
+  .workflow-flow li:nth-child(even) {
+    border-left: 1px solid var(--border);
+  }
+
+  .workflow-flow li:nth-child(n + 3) {
+    border-top: 1px solid var(--border);
   }
 
   .proof-grid {
