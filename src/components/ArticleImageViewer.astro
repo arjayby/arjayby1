@@ -1,0 +1,114 @@
+<dialog class="image-viewer" data-image-viewer aria-labelledby="image-viewer-title">
+  <div class="image-viewer-header">
+    <h2 id="image-viewer-title">Image viewer</h2>
+    <div class="image-viewer-actions" aria-label="Image zoom controls">
+      <button type="button" data-viewer-zoom-out aria-label="Zoom out">−</button>
+      <button type="button" data-viewer-reset aria-label="Reset zoom to 100%">100%</button>
+      <button type="button" data-viewer-zoom-in aria-label="Zoom in">+</button>
+      <button type="button" data-viewer-close>Close</button>
+    </div>
+  </div>
+  <div class="image-viewer-body" data-viewer-body>
+    <img alt="" data-viewer-image />
+  </div>
+  <p data-viewer-caption hidden></p>
+</dialog>
+
+<script>
+  const viewer = document.querySelector<HTMLDialogElement>("[data-image-viewer]");
+  const viewerBody = viewer?.querySelector<HTMLElement>("[data-viewer-body]");
+  const viewerImage = viewer?.querySelector<HTMLImageElement>("[data-viewer-image]");
+  const viewerCaption = viewer?.querySelector<HTMLElement>("[data-viewer-caption]");
+  const closeButton = viewer?.querySelector<HTMLButtonElement>("[data-viewer-close]");
+  const zoomOutButton = viewer?.querySelector<HTMLButtonElement>("[data-viewer-zoom-out]");
+  const zoomInButton = viewer?.querySelector<HTMLButtonElement>("[data-viewer-zoom-in]");
+  const resetButton = viewer?.querySelector<HTMLButtonElement>("[data-viewer-reset]");
+
+  const minimumZoom = 50;
+  const maximumZoom = 400;
+  const zoomStep = 25;
+  let zoom = 100;
+  let opener: HTMLElement | null = null;
+
+  const setZoom = (nextZoom: number) => {
+    if (!viewerImage || !resetButton) return;
+
+    zoom = Math.min(maximumZoom, Math.max(minimumZoom, nextZoom));
+    viewerImage.style.width = `${zoom}%`;
+    resetButton.textContent = `${zoom}%`;
+    resetButton.ariaLabel = zoom === 100 ? "Zoom is 100%" : "Reset zoom to 100%";
+
+    if (zoomOutButton) zoomOutButton.disabled = zoom === minimumZoom;
+    if (zoomInButton) zoomInButton.disabled = zoom === maximumZoom;
+  };
+
+  const openViewer = (image: HTMLImageElement, trigger: HTMLElement) => {
+    if (!viewer || !viewerBody || !viewerImage || !viewerCaption) return;
+
+    const figure = image.closest("figure");
+    const caption =
+      trigger.dataset.fullCaption ?? figure?.querySelector("figcaption")?.textContent?.trim() ?? "";
+    const linkedSource = image.closest<HTMLAnchorElement>("a[href]")?.href;
+
+    viewerImage.src = trigger.dataset.fullSrc ?? image.dataset.fullSrc ?? linkedSource ?? image.currentSrc;
+    viewerImage.alt = trigger.dataset.fullAlt ?? image.alt;
+    viewerCaption.textContent = caption;
+    viewerCaption.hidden = caption.length === 0;
+    opener = trigger;
+    setZoom(100);
+    viewerBody.scrollTo({ top: 0, left: 0 });
+    viewer.showModal();
+    closeButton?.focus();
+  };
+
+  const triggers = new Set<HTMLElement>();
+
+  document.querySelectorAll<HTMLImageElement>(".writing-article img").forEach((image) => {
+    const trigger =
+      image.closest<HTMLElement>("[data-viewer-trigger]") ??
+      image.closest<HTMLAnchorElement>("a[href]") ??
+      image;
+
+    if (triggers.has(trigger)) return;
+    triggers.add(trigger);
+    trigger.classList.add("article-image-viewer-target");
+
+    if (trigger === image) {
+      trigger.tabIndex = 0;
+      trigger.role = "button";
+      trigger.ariaLabel = image.alt ? `Open image: ${image.alt}` : "Open image";
+    }
+
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      openViewer(image, trigger);
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (trigger !== image || (event.key !== "Enter" && event.key !== " ")) return;
+      event.preventDefault();
+      openViewer(image, trigger);
+    });
+  });
+
+  zoomOutButton?.addEventListener("click", () => setZoom(zoom - zoomStep));
+  zoomInButton?.addEventListener("click", () => setZoom(zoom + zoomStep));
+  resetButton?.addEventListener("click", () => setZoom(100));
+  closeButton?.addEventListener("click", () => viewer?.close());
+
+  viewer?.addEventListener("click", (event) => {
+    if (event.target === viewer) viewer.close();
+  });
+
+  viewer?.addEventListener("keydown", (event) => {
+    if (event.key === "+" || event.key === "=") setZoom(zoom + zoomStep);
+    if (event.key === "-") setZoom(zoom - zoomStep);
+    if (event.key === "0") setZoom(100);
+  });
+
+  viewer?.addEventListener("close", () => {
+    viewerImage?.removeAttribute("src");
+    opener?.focus();
+    opener = null;
+  });
+</script>

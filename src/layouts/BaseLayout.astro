@@ -1,4 +1,5 @@
 ---
+import ArticleImageViewer from "@/components/ArticleImageViewer.astro";
 import SiteNavigation from "@/components/SiteNavigation.astro";
 import "@/styles/global.css";
 
@@ -44,5 +45,6 @@ const adobeFontsKitId = import.meta.env.PUBLIC_ADOBE_FONTS_KIT_ID;
         <slot />
       </main>
     </div>
+    <ArticleImageViewer />
   </body>
 </html>

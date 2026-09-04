@@ -474,37 +474,4 @@ const tradeExamples = [
     </div>
   </article>
 
-  <dialog class="image-viewer" data-image-viewer aria-labelledby="image-viewer-title">
-    <div class="image-viewer-header">
-      <h2 id="image-viewer-title">Expanded chart</h2>
-      <button type="button" data-viewer-close aria-label="Close expanded image">Close</button>
-    </div>
-    <div class="image-viewer-body">
-      <img src="" alt="" data-viewer-image />
-    </div>
-    <p data-viewer-caption></p>
-  </dialog>
 </BaseLayout>
-
-<script>
-  const viewer = document.querySelector<HTMLDialogElement>("[data-image-viewer]");
-  const viewerImage = viewer?.querySelector<HTMLImageElement>("[data-viewer-image]");
-  const viewerCaption = viewer?.querySelector<HTMLElement>("[data-viewer-caption]");
-  const closeButton = viewer?.querySelector<HTMLButtonElement>("[data-viewer-close]");
-
-  document.querySelectorAll<HTMLButtonElement>("[data-viewer-trigger]").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      if (!viewer || !viewerImage || !viewerCaption) return;
-      viewerImage.src = trigger.dataset.fullSrc ?? "";
-      viewerImage.alt = trigger.dataset.fullAlt ?? "";
-      viewerCaption.textContent = trigger.dataset.fullCaption ?? "";
-      viewer.showModal();
-      closeButton?.focus();
-    });
-  });
-
-  closeButton?.addEventListener("click", () => viewer?.close());
-  viewer?.addEventListener("click", (event) => {
-    if (event.target === viewer) viewer.close();
-  });
-</script>
