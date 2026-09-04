@@ -305,6 +305,15 @@
     text-decoration-color: currentColor;
   }
 
+  .entry-groups {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .entry-group .entry-list li:not(:first-child) a {
+    grid-column: 2;
+  }
+
   .writing-article {
     display: grid;
     gap: 2.5rem;
@@ -951,6 +960,10 @@
   .entry-list li {
     grid-template-columns: 1fr;
     gap: 0.2rem;
+  }
+
+  .entry-group .entry-list li:not(:first-child) a {
+    grid-column: 1;
   }
 
   .site-shell-wide {

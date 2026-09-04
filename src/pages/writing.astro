@@ -5,18 +5,21 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 <BaseLayout title="Writing" description="Writing and working notes from arjayby1.">
   <article class="page-stack">
     <div class="page-content">
-      <ul class="entry-list">
-        <li>
-          <time datetime="2026-09">Sep 2026</time>
-          <a href="/writing/my-current-agentic-software-development-workflow">
-            My current agentic software development workflow
-          </a>
-        </li>
-        <li>
-          <time datetime="2026-09">Sep 2026</time>
-          <a href="/writing/unslop-your-copy">Unslop your copy</a>
-        </li>
-      </ul>
+      <div class="entry-groups">
+        <div class="entry-group" role="group" aria-label="September 2026">
+          <ul class="entry-list">
+            <li>
+              <time datetime="2026-09">Sep 2026</time>
+              <a href="/writing/my-current-agentic-software-development-workflow">
+                My current agentic software development workflow
+              </a>
+            </li>
+            <li>
+              <a href="/writing/unslop-your-copy">Unslop your copy</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </article>
 </BaseLayout>

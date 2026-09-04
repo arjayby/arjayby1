@@ -5,14 +5,18 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 <BaseLayout title="Finance" description="Finance and trading notes from arjayby1.">
   <article class="page-stack">
     <div class="page-content">
-      <ul class="entry-list">
-        <li>
-          <time datetime="2026-09">Sep 2026</time>
-          <a href="/finance/how-i-made-4700-in-one-month-trading-crypto">
-            How I made $4,700 in one month trading crypto
-          </a>
-        </li>
-      </ul>
+      <div class="entry-groups">
+        <div class="entry-group" role="group" aria-label="September 2026">
+          <ul class="entry-list">
+            <li>
+              <time datetime="2026-09">Sep 2026</time>
+              <a href="/finance/how-i-made-4700-in-one-month-trading-crypto">
+                How I made $4,700 in one month trading crypto
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <aside class="finance-disclaimer" aria-label="Financial disclaimer">
         <p>
