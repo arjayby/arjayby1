@@ -929,9 +929,12 @@
   }
 
   .image-viewer-body {
+    position: relative;
     max-height: calc(92vh - 6rem);
     overflow: auto;
+    overscroll-behavior: contain;
     background: white;
+    touch-action: pan-x pan-y;
   }
 
   .image-viewer-body img {

@@ -29,17 +29,53 @@
   const zoomStep = 25;
   let zoom = 100;
   let opener: HTMLElement | null = null;
+  let zoomFrame: number | undefined;
+  let pinchStartDistance = 0;
+  let pinchStartZoom = 100;
 
-  const setZoom = (nextZoom: number) => {
+  const setZoom = (nextZoom: number, origin?: { clientX: number; clientY: number }) => {
     if (!viewerImage || !resetButton) return;
+
+    const bodyRect = viewerBody?.getBoundingClientRect();
+    const imageRect = viewerImage.getBoundingClientRect();
+    const viewportX =
+      origin && bodyRect ? origin.clientX - bodyRect.left : (viewerBody?.clientWidth ?? 0) / 2;
+    const viewportY =
+      origin && bodyRect ? origin.clientY - bodyRect.top : (viewerBody?.clientHeight ?? 0) / 2;
+    const imageX = viewerBody ? viewerBody.scrollLeft + viewportX - viewerImage.offsetLeft : 0;
+    const imageY = viewerBody ? viewerBody.scrollTop + viewportY - viewerImage.offsetTop : 0;
+    const imageRatioX = imageRect.width > 0 ? imageX / imageRect.width : 0;
+    const imageRatioY = imageRect.height > 0 ? imageY / imageRect.height : 0;
 
     zoom = Math.min(maximumZoom, Math.max(minimumZoom, nextZoom));
     viewerImage.style.width = `${zoom}%`;
-    resetButton.textContent = `${zoom}%`;
+    resetButton.textContent = `${Math.round(zoom)}%`;
     resetButton.ariaLabel = zoom === 100 ? "Zoom is 100%" : "Reset zoom to 100%";
 
     if (zoomOutButton) zoomOutButton.disabled = zoom === minimumZoom;
     if (zoomInButton) zoomInButton.disabled = zoom === maximumZoom;
+
+    if (viewerBody && imageRect.width > 0) {
+      if (zoomFrame) cancelAnimationFrame(zoomFrame);
+      zoomFrame = requestAnimationFrame(() => {
+        viewerBody.scrollLeft = viewerImage.offsetLeft + imageRatioX * viewerImage.clientWidth - viewportX;
+        viewerBody.scrollTop = viewerImage.offsetTop + imageRatioY * viewerImage.clientHeight - viewportY;
+      });
+    }
+  };
+
+  const getPinchDetails = (touches: TouchList) => {
+    const firstTouch = touches.item(0);
+    const secondTouch = touches.item(1);
+    if (!firstTouch || !secondTouch) return null;
+
+    return {
+      distance: Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY),
+      origin: {
+        clientX: (firstTouch.clientX + secondTouch.clientX) / 2,
+        clientY: (firstTouch.clientY + secondTouch.clientY) / 2,
+      },
+    };
   };
 
   const openViewer = (image: HTMLImageElement, trigger: HTMLElement) => {
@@ -50,7 +86,8 @@
       trigger.dataset.fullCaption ?? figure?.querySelector("figcaption")?.textContent?.trim() ?? "";
     const linkedSource = image.closest<HTMLAnchorElement>("a[href]")?.href;
 
-    viewerImage.src = trigger.dataset.fullSrc ?? image.dataset.fullSrc ?? linkedSource ?? image.currentSrc;
+    viewerImage.src =
+      trigger.dataset.fullSrc ?? image.dataset.fullSrc ?? linkedSource ?? image.currentSrc;
     viewerImage.alt = trigger.dataset.fullAlt ?? image.alt;
     viewerCaption.textContent = caption;
     viewerCaption.hidden = caption.length === 0;
@@ -96,6 +133,46 @@
   resetButton?.addEventListener("click", () => setZoom(100));
   closeButton?.addEventListener("click", () => viewer?.close());
 
+  viewerBody?.addEventListener("touchstart", (event) => {
+    if (event.touches.length !== 2) return;
+    const pinch = getPinchDetails(event.touches);
+    if (!pinch) return;
+
+    pinchStartDistance = pinch.distance;
+    pinchStartZoom = zoom;
+  });
+
+  viewerBody?.addEventListener(
+    "touchmove",
+    (event) => {
+      if (event.touches.length !== 2 || pinchStartDistance === 0) return;
+      const pinch = getPinchDetails(event.touches);
+      if (!pinch) return;
+
+      event.preventDefault();
+      setZoom(pinchStartZoom * (pinch.distance / pinchStartDistance), pinch.origin);
+    },
+    { passive: false },
+  );
+
+  const endPinch = (event: TouchEvent) => {
+    if (event.touches.length < 2) pinchStartDistance = 0;
+  };
+
+  viewerBody?.addEventListener("touchend", endPinch);
+  viewerBody?.addEventListener("touchcancel", endPinch);
+
+  viewerBody?.addEventListener(
+    "wheel",
+    (event) => {
+      if (!event.ctrlKey) return;
+
+      event.preventDefault();
+      setZoom(zoom * Math.exp(-event.deltaY * 0.01), event);
+    },
+    { passive: false },
+  );
+
   viewer?.addEventListener("click", (event) => {
     if (event.target === viewer) viewer.close();
   });
@@ -107,6 +184,9 @@
   });
 
   viewer?.addEventListener("close", () => {
+    if (zoomFrame) cancelAnimationFrame(zoomFrame);
+    zoomFrame = undefined;
+    pinchStartDistance = 0;
     viewerImage?.removeAttribute("src");
     opener?.focus();
     opener = null;
