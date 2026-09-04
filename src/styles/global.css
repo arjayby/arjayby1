@@ -203,6 +203,33 @@
     color: var(--foreground);
   }
 
+  .recent-content {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .recent-content section {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .recent-content h2 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: inherit;
+    text-transform: uppercase;
+  }
+
+  .recent-content h2 a {
+    text-decoration: none;
+  }
+
+  .recent-content h2 a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.18rem;
+  }
+
   .kousa-gallery {
     display: grid;
     gap: 0.75rem;
