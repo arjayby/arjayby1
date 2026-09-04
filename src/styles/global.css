@@ -698,6 +698,16 @@
     color: var(--muted-foreground);
   }
 
+  .finance-disclaimer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted-foreground);
+  }
+
+  .finance-disclaimer p {
+    margin: 0;
+  }
+
   .article-rail {
     position: fixed;
     top: 50%;
