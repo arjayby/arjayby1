@@ -75,31 +75,31 @@ const sections = [
       <section aria-labelledby="plan-while-context-is-fresh">
         <h2 id="plan-while-context-is-fresh">Plan while context is fresh</h2>
         <p>
-          I use Matt Pocock's
+          I use Matt Pocock's{" "}
           <a href="https://github.com/mattpocock/skills">engineering skills</a>.<sup>
             <a href="#ref-1">1</a>
-          </sup>
-          I start a new app with <code>grill-me</code>. Inside a repo, I use
+          </sup>{" "}
+          I start a new app with <code>grill-me</code>. Inside a repo, I use{" "}
           <a href="https://github.com/mattpocock/skills/blob/main/docs/engineering/grill-with-docs.md">
             <code>grill-with-docs</code>
           </a>.
         </p>
         <p>
           This part needs my full attention. The agent asks one question at a time and follows each
-          decision until we agree on the behavior and edge cases. Once we agree, I use
+          decision until we agree on the behavior and edge cases. Once we agree, I use{" "}
           <a href="https://github.com/mattpocock/skills/blob/main/docs/engineering/to-spec.md">
             <code>to-spec</code>
-          </a>
+          </a>{" "}
           in the same session. The conversation contains the reasons behind the decisions, so I do
           not throw it away.
         </p>
         <p>
-          The spec goes to GitHub Issues. Linear would also work. Then
+          The spec goes to GitHub Issues. Linear would also work. Then{" "}
           <a href="https://github.com/mattpocock/skills/blob/main/docs/engineering/to-tickets.md">
             <code>to-tickets</code>
-          </a>
+          </a>{" "}
           splits it into small vertical slices with acceptance criteria and blocking links.
-          Bounded tickets keep implementation sessions away from what Dex Horthy calls the
+          Bounded tickets keep implementation sessions away from what Dex Horthy calls the{" "}
           <a href="https://ai.engineer/talks/context-engineering-for-complex-codebases">
             "dumb zone"
           </a>, where accumulated context starts hurting the agent's work.<sup>
@@ -112,7 +112,7 @@ const sections = [
         <h2 id="one-ticket-one-session-one-worktree">One ticket, one session, one worktree</h2>
         <p>
           My implementation unit is strict. One ticket gets one session, one Git worktree, and one
-          implementation. I point the session at the ticket and invoke
+          implementation. I point the session at the ticket and invoke{" "}
           <a href="https://github.com/mattpocock/skills/blob/main/docs/engineering/implement.md">
             <code>implement</code>
           </a>.
@@ -150,15 +150,15 @@ const sections = [
           AFK, and wait for Codex notifications.
         </p>
         <p>
-          For conflicts, I use
+          For conflicts, I use{" "}
           <a
             href="https://github.com/mattpocock/skills/blob/main/docs/engineering/resolving-merge-conflicts.md"
           >
             <code>resolving-merge-conflicts</code>
-          </a>. To publish, the official GitHub plugin's
+          </a>. To publish, the official GitHub plugin's{" "}
           <a href="https://github.com/openai/plugins/blob/main/plugins/github/skills/yeet/SKILL.md">
             <code>github:yeet</code>
-          </a>
+          </a>{" "}
           skill checks the change, commits it, pushes the branch, and opens a draft PR.<sup>
             <a href="#ref-3">3</a>
           </sup>
@@ -193,13 +193,13 @@ const sections = [
           report which checks passed.
         </p>
         <p>
-          I use Cursor's
+          I use Cursor's{" "}
           <a href="https://www.skills.sh/cursor/plugins/unslop"><code>unslop</code> skill</a> for
           product copy, documentation, PR text, and agent explanations that are too dense to
           understand.<sup><a href="#ref-4">4</a></sup>
         </p>
         <p>
-          Addy Osmani has a similar
+          Addy Osmani has a similar{" "}
           <a href="https://github.com/addyosmani/agent-skills">agent-skills collection</a> that can
           select skills automatically based on the task.<sup><a href="#ref-5">5</a></sup> Matt
           Pocock's main engineering handoffs are invoked by the human. I have not tried Addy's
@@ -216,27 +216,27 @@ const sections = [
         <h2 id="references">References</h2>
         <ol>
           <li id="ref-1">
-            Matt Pocock,
+            Matt Pocock,{" "}
             <a href="https://github.com/mattpocock/skills">Engineering skills</a>.
           </li>
           <li id="ref-2">
-            Dex Horthy,
+            Dex Horthy,{" "}
             <a href="https://ai.engineer/talks/context-engineering-for-complex-codebases">
               No Vibes Allowed: Solving Hard Problems in Complex Codebases
             </a>.
           </li>
           <li id="ref-3">
-            OpenAI,
+            OpenAI,{" "}
             <a href="https://github.com/openai/plugins/blob/main/plugins/github/skills/yeet/SKILL.md">
               GitHub Yeet skill
             </a>.
           </li>
           <li id="ref-4">
-            Cursor,
+            Cursor,{" "}
             <a href="https://www.skills.sh/cursor/plugins/unslop">Unslop editing skill</a>.
           </li>
           <li id="ref-5">
-            Addy Osmani,
+            Addy Osmani,{" "}
             <a href="https://github.com/addyosmani/agent-skills">Agent Skills</a>.
           </li>
         </ol>
