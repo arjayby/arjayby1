@@ -11,7 +11,6 @@ interface Props {
 
 const { title, description, wide = false } = Astro.props;
 const pageTitle = title === "Home" ? "arjayby1" : `${title} | arjayby1`;
-const adobeFontsKitId = import.meta.env.PUBLIC_ADOBE_FONTS_KIT_ID;
 ---
 
 <!doctype html>
@@ -27,14 +26,6 @@ const adobeFontsKitId = import.meta.env.PUBLIC_ADOBE_FONTS_KIT_ID;
     <meta property="og:site_name" content="arjayby1" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    {
-      adobeFontsKitId && (
-        <>
-          <link rel="preconnect" href="https://use.typekit.net" />
-          <link rel="stylesheet" href={`https://use.typekit.net/${adobeFontsKitId}.css`} />
-        </>
-      )
-    }
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{pageTitle}</title>
   </head>

@@ -13,25 +13,15 @@ The site includes Home, Writing, and Finance pages. Content is placeholder copy 
 
 ## Commit Mono
 
-Commit Mono is loaded from an Adobe Fonts web project when
-`PUBLIC_ADOBE_FONTS_KIT_ID` is set. Copy your web project ID into a local
-`.env` file:
-
-```sh
-PUBLIC_ADOBE_FONTS_KIT_ID=your-kit-id
-```
-
-The project also includes local font files as a fallback:
+The site self-hosts [Commit Mono](https://commitmono.com/) in Regular and Bold:
 
 ```text
-public/fonts/CommitMono-Regular.ttf
-public/fonts/CommitMono-Bold.ttf
-public/fonts/LICENSE.txt
+public/fonts/CommitMono-Regular.woff2
+public/fonts/CommitMono-Bold.woff2
+public/fonts/CommitMono-OFL.txt
 ```
 
-Review `public/fonts/LICENSE.txt` before publishing or distributing the site.
-Production deployments should use the Adobe Fonts web project unless the
-required self hosting license has been obtained.
+Commit Mono's font files are distributed under the SIL Open Font License 1.1.
 
 ## Commands
 
