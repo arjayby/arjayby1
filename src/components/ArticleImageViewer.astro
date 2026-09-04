@@ -9,7 +9,9 @@
     </div>
   </div>
   <div class="image-viewer-body" data-viewer-body>
-    <img alt="" data-viewer-image />
+    <div class="image-viewer-canvas" data-viewer-canvas>
+      <img alt="" data-viewer-image />
+    </div>
   </div>
   <p data-viewer-caption hidden></p>
 </dialog>
@@ -17,6 +19,7 @@
 <script>
   const viewer = document.querySelector<HTMLDialogElement>("[data-image-viewer]");
   const viewerBody = viewer?.querySelector<HTMLElement>("[data-viewer-body]");
+  const viewerCanvas = viewer?.querySelector<HTMLElement>("[data-viewer-canvas]");
   const viewerImage = viewer?.querySelector<HTMLImageElement>("[data-viewer-image]");
   const viewerCaption = viewer?.querySelector<HTMLElement>("[data-viewer-caption]");
   const closeButton = viewer?.querySelector<HTMLButtonElement>("[data-viewer-close]");
@@ -34,32 +37,35 @@
   let pinchStartZoom = 100;
 
   const setZoom = (nextZoom: number, origin?: { clientX: number; clientY: number }) => {
-    if (!viewerImage || !resetButton) return;
+    if (!viewerBody || !viewerCanvas || !resetButton) return;
 
-    const bodyRect = viewerBody?.getBoundingClientRect();
-    const imageRect = viewerImage.getBoundingClientRect();
+    const bodyRect = viewerBody.getBoundingClientRect();
+    const canvasRect = viewerCanvas.getBoundingClientRect();
     const viewportX =
-      origin && bodyRect ? origin.clientX - bodyRect.left : (viewerBody?.clientWidth ?? 0) / 2;
+      origin ? origin.clientX - bodyRect.left : viewerBody.clientWidth / 2;
     const viewportY =
-      origin && bodyRect ? origin.clientY - bodyRect.top : (viewerBody?.clientHeight ?? 0) / 2;
-    const imageX = viewerBody ? viewerBody.scrollLeft + viewportX - viewerImage.offsetLeft : 0;
-    const imageY = viewerBody ? viewerBody.scrollTop + viewportY - viewerImage.offsetTop : 0;
-    const imageRatioX = imageRect.width > 0 ? imageX / imageRect.width : 0;
-    const imageRatioY = imageRect.height > 0 ? imageY / imageRect.height : 0;
+      origin ? origin.clientY - bodyRect.top : viewerBody.clientHeight / 2;
+    const canvasX = viewerBody.scrollLeft + viewportX - viewerCanvas.offsetLeft;
+    const canvasY = viewerBody.scrollTop + viewportY - viewerCanvas.offsetTop;
+    const canvasRatioX = canvasRect.width > 0 ? canvasX / canvasRect.width : 0;
+    const canvasRatioY = canvasRect.height > 0 ? canvasY / canvasRect.height : 0;
 
     zoom = Math.min(maximumZoom, Math.max(minimumZoom, nextZoom));
-    viewerImage.style.width = `${zoom}%`;
+    viewerCanvas.style.width = `${zoom}%`;
+    viewerCanvas.style.height = `${zoom}%`;
     resetButton.textContent = `${Math.round(zoom)}%`;
     resetButton.ariaLabel = zoom === 100 ? "Zoom is 100%" : "Reset zoom to 100%";
 
     if (zoomOutButton) zoomOutButton.disabled = zoom === minimumZoom;
     if (zoomInButton) zoomInButton.disabled = zoom === maximumZoom;
 
-    if (viewerBody && imageRect.width > 0) {
+    if (canvasRect.width > 0) {
       if (zoomFrame) cancelAnimationFrame(zoomFrame);
       zoomFrame = requestAnimationFrame(() => {
-        viewerBody.scrollLeft = viewerImage.offsetLeft + imageRatioX * viewerImage.clientWidth - viewportX;
-        viewerBody.scrollTop = viewerImage.offsetTop + imageRatioY * viewerImage.clientHeight - viewportY;
+        viewerBody.scrollLeft =
+          viewerCanvas.offsetLeft + canvasRatioX * viewerCanvas.clientWidth - viewportX;
+        viewerBody.scrollTop =
+          viewerCanvas.offsetTop + canvasRatioY * viewerCanvas.clientHeight - viewportY;
       });
     }
   };
@@ -79,7 +85,7 @@
   };
 
   const openViewer = (image: HTMLImageElement, trigger: HTMLElement) => {
-    if (!viewer || !viewerBody || !viewerImage || !viewerCaption) return;
+    if (!viewer || !viewerBody || !viewerCanvas || !viewerImage || !viewerCaption) return;
 
     const figure = image.closest("figure");
     const caption =
