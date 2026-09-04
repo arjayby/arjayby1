@@ -145,10 +145,9 @@ const tradeExamples = [
 
       <aside class="article-note finance-risk-note">
         <p>
-          This is one month of personal results, not an expected return. I traded leveraged crypto
-          derivatives and risked roughly 20% to 30% of my account when margin allowed. A short
-          losing streak at that size can destroy an account. This article is educational, not
-          financial advice.
+          These are personal results, not expected returns. I traded leveraged crypto derivatives
+          and risked 20% to 30% of my account when margin allowed. A short losing streak can destroy
+          an account. This is educational, not financial advice.
         </p>
       </aside>
     </header>
@@ -158,14 +157,12 @@ const tradeExamples = [
         <p class="article-kicker">01</p>
         <h2 id="strategy-overview-heading">Strategy overview</h2>
         <p>
-          The setup trades a pullback in an established trend. In an uptrend, price forms higher
-          highs and higher lows, then pulls back before continuing. A downtrend flips that pattern.
-          I wait for the market to show direction, then try to join that direction during the
-          pullback.
+          This setup joins an established trend during a pullback: buy after an upward break or
+          sell after a downward break.
         </p>
         <p>
-          "DCA" here means scaling into one leveraged position with three planned limit orders. It
-          is not the usual long-term practice of buying a fixed dollar amount on a schedule.
+          Here, "DCA" means scaling into one leveraged position with three limit orders—not buying
+          a fixed amount on a schedule.
         </p>
         <ul class="article-list">
           <li>Uptrend: buy a pullback after a significant previous high breaks.</li>
@@ -187,9 +184,8 @@ const tradeExamples = [
         <p class="article-kicker">02</p>
         <h2 id="dca-method-heading">The three-limit-order method</h2>
         <p>
-          I plot a Fibonacci template across the impulse and stage entries at 0.618, 0.382, and
-          0.17. Each deeper order is larger. The stop stays at -0.05 while the profit target moves
-          closer as more orders fill.
+          I plot Fibonacci levels across the impulse and stage larger entries at 0.618, 0.382, and
+          0.17. The stop stays at -0.05; the target moves closer as orders fill.
         </p>
 
         <div class="strategy-table-wrap wide-block">
@@ -234,9 +230,8 @@ const tradeExamples = [
         </div>
 
         <p>
-          The 3× and 5× orders pull the average entry toward the deeper retracement. They also make
-          the position much larger exactly when price has moved farther against the initial entry.
-          All three orders, targets, and the final stop must be calculated before the first fill.
+          Larger orders improve the average entry but increase exposure as price moves against the
+          trade. Calculate every order, target, and stop before the first fill.
         </p>
 
         <div class="diagram-grid wide-block">
@@ -272,9 +267,8 @@ const tradeExamples = [
         <p class="article-kicker">03</p>
         <h2 id="fibonacci-levels-heading">The Fibonacci template</h2>
         <p>
-          These levels are fixed decision points, not guaranteed reversal zones. Their value in
-          this method is consistency. They define where each order, target, and stop belongs before
-          the trade becomes emotional.
+          These levels are fixed decision points, not guaranteed reversals. They define every
+          order, target, and stop in advance.
         </p>
         <ul class="article-list">
           <li><strong>0.618:</strong> the first pullback entry.</li>
@@ -327,13 +321,12 @@ const tradeExamples = [
 
         <p>
           Elliott-wave counts are subjective. Mark the wave, prior break, and EMA stack before
-          placing an order so the explanation cannot change after the trade.
+          placing an order.
         </p>
 
         <h3>Six completed examples</h3>
         <p>
-          These are the long and short examples from the original strategy document. Select any
-          chart to inspect its annotations.
+          Select a chart to inspect the original long and short examples.
         </p>
 
         <div class="trade-grid wide-block">
@@ -372,26 +365,21 @@ const tradeExamples = [
         <p class="article-kicker">05</p>
         <h2 id="position-sizing-heading">Position sizing</h2>
         <p>
-          During this period, I risked roughly 20% to 30% of my account when margin allowed. On a
-          $10,000 account, that means accepting a possible $2,000 to $3,000 loss on one trade. At
-          the document's 5:1 risk ratio, the target profit would be $400 to $600.
+          I risked 20% to 30% of my account when margin allowed. On $10,000, that is a possible
+          $2,000 to $3,000 loss for a $400 to $600 target at 5:1 risk.
         </p>
         <aside class="article-note">
           <p>
-            This is a disclosure, not a sizing recommendation. Decide the maximum account loss you
-            can accept before entering any values in the calculator.
+            This is disclosure, not a recommendation. Set your maximum acceptable loss first.
           </p>
         </aside>
         <p>
-          The calculator takes account size, all three limit prices, the first take-profit level,
-          and the stop. It returns the three quantities, adjusted take-profit levels, and potential
-          profit for each fill scenario.
+          The calculator uses your account size, three limit prices, first target, and stop to
+          return quantities, adjusted targets, and potential profit.
         </p>
         <p>
-          Its default calculation uses 10% account risk. The original method changes that input by
-          entering twice the account size for 20% risk, half the account size for 5% risk, and so
-          on. Verify every output against your exchange's contract size and margin rules before
-          placing an order.
+          It defaults to 10% risk. The original method doubles the account-size input for 20% risk
+          or halves it for 5%. Verify outputs against exchange contract and margin rules.
         </p>
         <p>
           <a
@@ -406,19 +394,15 @@ const tradeExamples = [
         <p class="article-kicker">06</p>
         <h2 id="risking-five-heading">Risking five to make one</h2>
         <p>
-          The third-fill version risks $5 for a $1 target. The method trades a large potential loss
-          for a wider stop and a closer exit. Its operating target is six winning trades out of
-          seven.
+          The third-fill setup risks $5 to make $1 and targets six wins out of seven.
         </p>
         <p>
-          The appeal is practical. A wide stop tolerates more market noise, while the closer target
-          asks less of each move. Fewer tight stop-outs may also reduce emotional re-entry and
-          repeated transaction costs.
+          A wide stop tolerates noise; a close target asks less of each move. Fewer stop-outs may
+          also reduce emotional re-entry and fees.
         </p>
         <p>
-          A wide stop does not create an edge by itself. The approach depends on selective entries,
-          a very high realized win rate, consistent sizing, and the discipline to accept the full
-          loss when the setup fails.
+          A wide stop is not an edge. This method needs selective entries, a high win rate,
+          consistent sizing, and acceptance of the full loss.
         </p>
         <ul class="article-list">
           <li>Judge performance across a series of trades, not one result.</li>
@@ -434,28 +418,26 @@ const tradeExamples = [
 
         <h3>Market conditions</h3>
         <ul class="article-list">
-          <li>Prefer orderly price action with a readable Elliott-wave structure.</li>
-          <li>Avoid extreme volatility that can run through every planned level.</li>
-          <li>Avoid FOMC decisions, US elections, CPI releases, war, and geopolitical shocks.</li>
-          <li>Avoid the New York session open between 8:00 and 10:00 a.m. Eastern.</li>
+          <li>Prefer orderly price action and a clear Elliott-wave structure.</li>
+          <li>Avoid extreme volatility, major news, and geopolitical shocks.</li>
+          <li>Avoid 8:00–10:00 a.m. Eastern around the New York open.</li>
         </ul>
 
         <h3>Timeframes and bias</h3>
         <ul class="article-list">
-          <li>Use the 3-minute chart for the entry setup.</li>
-          <li>Check the daily chart first for trend direction and major levels.</li>
-          <li>Choose a long or short daily bias before scanning entries.</li>
+          <li>Use the daily chart for trend and major levels.</li>
+          <li>Set a long or short bias, then find entries on the 3-minute chart.</li>
         </ul>
 
         <h3>Levels and review</h3>
         <ul class="article-list">
-          <li>Mark the previous day's high and low, weekly levels, and round numbers.</li>
-          <li>Watch how price breaks or rejects those areas.</li>
-          <li>Backtest the complete rules on historical charts.</li>
-          <li>Record entries, fills, exits, invalidations, and the running win rate.</li>
+          <li>Mark prior-day highs and lows, weekly levels, and round numbers.</li>
+          <li>Watch for breaks or rejections.</li>
+          <li>Backtest every rule.</li>
+          <li>Record fills, exits, invalidations, and win rate.</li>
         </ul>
         <p>
-          The best setups often appear in uneventful conditions. Waiting is part of the strategy.
+          Good setups often appear in quiet conditions. Waiting is part of the strategy.
         </p>
       </section>
 
@@ -463,10 +445,9 @@ const tradeExamples = [
         <p class="article-kicker">08</p>
         <h2 id="disclaimer-resources-heading">Disclaimer and learning resources</h2>
         <p>
-          Trading leveraged crypto derivatives can result in substantial losses. Past results do
-          not predict future performance. This strategy is not guaranteed, and your results may be
-          materially different. Start small, use money you can afford to lose, research the market,
-          check local regulations, and seek qualified financial advice for your circumstances.
+          Leveraged crypto trading can cause substantial losses. Past results do not predict future
+          performance. Use only money you can afford to lose, check local regulations, and seek
+          qualified advice for your circumstances.
         </p>
         <p>This page is educational content. It is not financial advice.</p>
 
