@@ -2,7 +2,16 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import TooltipLink from "@/components/TooltipLink";
 
-const kousaImages = [
+const galleryImages = [
+  { src: "/images/a1ui/city.webp", alt: "Empty city street between tall buildings in the fog" },
+  { src: "/images/a1ui/deep-ocean.webp", alt: "Whale swimming beneath sunlit ocean water" },
+  { src: "/images/a1ui/porsche-garage.webp", alt: "Silver Porsche in a concrete garage" },
+  { src: "/images/a1ui/radio-telescope.webp", alt: "Radio telescope on a rocky plain" },
+  { src: "/images/a1ui/railway.webp", alt: "Railway tracks curving through a misty station" },
+  { src: "/images/a1ui/astral.webp", alt: "Moon surrounded by clouds and stars" },
+  { src: "/images/a1ui/sound-wave.webp", alt: "Translucent layers forming a sound wave" },
+  { src: "/images/a1ui/airport-runway.webp", alt: "Airplane above a foggy airport runway" },
+  { src: "/images/a1ui/library.webp", alt: "Circular library with a spiral staircase and skylight" },
   { src: "/images/kousa/chrome-bloom.webp", alt: "Chrome flower sculpture" },
   { src: "/images/kousa/glass-hare.webp", alt: "Glass hare sculpture" },
   { src: "/images/kousa/iridescent-film.webp", alt: "Iridescent film" },
@@ -93,9 +102,9 @@ const kousaImages = [
       <section class="kousa-gallery" aria-labelledby="kousa-gallery-heading">
         <h2 id="kousa-gallery-heading">Gallery</h2>
         <p>Images I've generated for production work and personal projects.</p>
-        <ul tabindex="0" aria-label="Kousa image gallery">
+        <ul tabindex="0" aria-label="Image gallery">
           {
-            kousaImages.map(({ src, alt }) => (
+            galleryImages.map(({ src, alt }) => (
               <li>
                 <img
                   src={src}
