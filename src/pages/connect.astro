@@ -1,0 +1,52 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Connect" description="Find arjayby1 online, copy my email, or schedule a call.">
+  <article class="page-stack">
+    <div class="page-content">
+      <section class="connect-links" aria-label="Contact and social links">
+        <ul>
+          <li><a href="https://github.com/arjayby">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/arjayby/">LinkedIn</a></li>
+          <li><a href="https://cal.com/arjayby/30min">Schedule a call</a></li>
+          <li class="connect-email">
+            <span id="personal-email">arjayby1@gmail.com</span>
+            <button type="button" data-copy-email aria-label="Copy email address">
+              Copy
+            </button>
+          </li>
+        </ul>
+        <p class="connect-status" role="status" data-copy-status></p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  const copyButton = document.querySelector<HTMLButtonElement>("[data-copy-email]");
+  const email = document.querySelector("#personal-email")?.textContent;
+  const status = document.querySelector<HTMLElement>("[data-copy-status]");
+
+  if (copyButton && email && status) {
+    let resetTimer: ReturnType<typeof setTimeout>;
+
+    copyButton.addEventListener("click", async () => {
+      clearTimeout(resetTimer);
+      status.textContent = "";
+
+      try {
+        await navigator.clipboard.writeText(email);
+        copyButton.textContent = "Copied";
+        status.textContent = "Email copied to clipboard.";
+        resetTimer = setTimeout(() => {
+          copyButton.textContent = "Copy";
+          status.textContent = "";
+        }, 2000);
+      } catch {
+        copyButton.textContent = "Copy";
+        status.textContent = "Couldn't copy. Select the email address to copy it manually.";
+      }
+    });
+  }
+</script>
